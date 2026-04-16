@@ -2,9 +2,8 @@
   {
     "content_pack_rank": 1,
     "topic": "Lakers are one trade away from contention or one trade from disaster",
-<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
     "postability_score": 89.1,
-    "best_hook": "Direct challenge: defend lakers are one trade away from contention or one trade from disaster without using lazy narratives.",
+    "best_hook": "Direct challenge: defend lakers are one trade away from contention or one trade from disaster without lazy narratives.",
     "target_duration_seconds": 18,
     "pacing_profile": "TikTok fast-cut / high-retention / confrontation-first opener",
     "music_style_suggestion": "Aggressive trap-sports beat at 140-150 BPM with punchy transitions",
@@ -15,7 +14,7 @@
           0,
           2
         ],
-        "line": "Direct challenge: defend lakers are one trade away from contention or one trade from disaster without using lazy narratives.",
+        "line": "Direct challenge: defend lakers are one trade away from contention or one trade from disaster without lazy narratives.",
         "suggested_visual": "Tight face-cam opener with subtitle slam",
         "editing_style_notes": "0.2s zoom punch + bass hit + red caption emphasis"
       },
@@ -45,52 +44,17 @@
           13,
           18
         ],
-        "line": "If you disagree, prove it in one sentence with receipts \u2014 or admit your nba takes are casual-tier.",
+        "line": "If you disagree, prove it in one sentence with receipts\u2014or admit your nba take is casual-tier.",
         "suggested_visual": "Creator reaction + poll sticker + pinned-comment prompt",
         "editing_style_notes": "Music dip at 15s, forceful CTA hold to final frame"
-=======
-    "best_hook": "This just changed everything for the Lakers — one trade rumor exposed their real weakness.",
-    "target_duration_seconds": 18,
-    "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
-    "music_style_suggestion": "Aggressive trap-sports beat at 145 BPM with bass stabs",
-    "scenes": [
-      {
-        "scene": 1,
-        "timing_seconds": [0, 2],
-        "line": "This just changed everything for the Lakers.",
-        "suggested_visual": "Face-cam hot open + giant LAL logo",
-        "editing_style_notes": "Instant punch-in zoom, hard subtitle pop"
-      },
-      {
-        "scene": 2,
-        "timing_seconds": [2, 6],
-        "line": "One trade rumor exposed the roster hole.",
-        "suggested_visual": "Trade machine screenshot + lineup graphic",
-        "editing_style_notes": "Fast swipe transition with highlight arrows"
-      },
-      {
-        "scene": 3,
-        "timing_seconds": [6, 12],
-        "line": "Star chase vs depth build — you cannot do both.",
-        "suggested_visual": "Split-screen package A vs package B",
-        "editing_style_notes": "2 jump cuts and red/green vote labels"
-      },
-      {
-        "scene": 4,
-        "timing_seconds": [12, 18],
-        "line": "Comment STAR or DEPTH.",
-        "suggested_visual": "Creator reaction + poll sticker",
-        "editing_style_notes": "Music duck at 15s, CTA text lingers"
->>>>>>> main
       }
     ]
   },
   {
     "content_pack_rank": 2,
-<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
     "topic": "Cowboys draft strategy feels like d\u00e9j\u00e0 vu and fans are panicking",
     "postability_score": 86.5,
-    "best_hook": "Direct challenge: defend cowboys draft strategy feels like d\u00e9j\u00e0 vu and fans are panicking without using lazy narratives.",
+    "best_hook": "Direct challenge: defend cowboys draft strategy feels like d\u00e9j\u00e0 vu and fans are panicking without lazy narratives.",
     "target_duration_seconds": 18,
     "pacing_profile": "TikTok fast-cut / high-retention / confrontation-first opener",
     "music_style_suggestion": "Aggressive trap-sports beat at 140-150 BPM with punchy transitions",
@@ -101,7 +65,7 @@
           0,
           2
         ],
-        "line": "Direct challenge: defend cowboys draft strategy feels like d\u00e9j\u00e0 vu and fans are panicking without using lazy narratives.",
+        "line": "Direct challenge: defend cowboys draft strategy feels like d\u00e9j\u00e0 vu and fans are panicking without lazy narratives.",
         "suggested_visual": "Tight face-cam opener with subtitle slam",
         "editing_style_notes": "0.2s zoom punch + bass hit + red caption emphasis"
       },
@@ -131,53 +95,17 @@
           13,
           18
         ],
-        "line": "If you disagree, prove it in one sentence with receipts \u2014 or admit your nfl takes are casual-tier.",
+        "line": "If you disagree, prove it in one sentence with receipts\u2014or admit your nfl take is casual-tier.",
         "suggested_visual": "Creator reaction + poll sticker + pinned-comment prompt",
         "editing_style_notes": "Music dip at 15s, forceful CTA hold to final frame"
-=======
-    "topic": "Cowboys draft strategy feels like déjà vu and fans are panicking",
-    "best_hook": "Nobody is talking about this: Dallas keeps drafting \"safe\" while rivals draft fear.",
-    "target_duration_seconds": 18,
-    "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
-    "music_style_suggestion": "Southern trap drum groove, 142 BPM",
-    "scenes": [
-      {
-        "scene": 1,
-        "timing_seconds": [0, 2],
-        "line": "Dallas keeps drafting safe.",
-        "suggested_visual": "Face-cam + Cowboys helmet",
-        "editing_style_notes": "Shock text animation"
-      },
-      {
-        "scene": 2,
-        "timing_seconds": [2, 6],
-        "line": "Rivals draft impact.",
-        "suggested_visual": "Pick board comparison",
-        "editing_style_notes": "Flash cut + red marker circle"
-      },
-      {
-        "scene": 3,
-        "timing_seconds": [6, 12],
-        "line": "Value pick is not the same as playoff swing pick.",
-        "suggested_visual": "Past draft picks + playoff exits",
-        "editing_style_notes": "Quick stat overlays under 6 words"
-      },
-      {
-        "scene": 4,
-        "timing_seconds": [12, 18],
-        "line": "What position can they NOT miss on?",
-        "suggested_visual": "Comment bait prompt",
-        "editing_style_notes": "Freeze frame end card"
->>>>>>> main
       }
     ]
   },
   {
     "content_pack_rank": 3,
-<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
     "topic": "UNC fans think this portal class is fake deep",
     "postability_score": 85.6,
-    "best_hook": "Direct challenge: defend unc fans think this portal class is fake deep without using lazy narratives.",
+    "best_hook": "Direct challenge: defend unc fans think this portal class is fake deep without lazy narratives.",
     "target_duration_seconds": 18,
     "pacing_profile": "TikTok fast-cut / high-retention / confrontation-first opener",
     "music_style_suggestion": "Aggressive trap-sports beat at 140-150 BPM with punchy transitions",
@@ -188,7 +116,7 @@
           0,
           2
         ],
-        "line": "Direct challenge: defend unc fans think this portal class is fake deep without using lazy narratives.",
+        "line": "Direct challenge: defend unc fans think this portal class is fake deep without lazy narratives.",
         "suggested_visual": "Tight face-cam opener with subtitle slam",
         "editing_style_notes": "0.2s zoom punch + bass hit + red caption emphasis"
       },
@@ -218,27 +146,14 @@
           13,
           18
         ],
-        "line": "If you disagree, prove it in one sentence with receipts \u2014 or admit your college basketball takes are casual-tier.",
+        "line": "If you disagree, prove it in one sentence with receipts\u2014or admit your college basketball take is casual-tier.",
         "suggested_visual": "Creator reaction + poll sticker + pinned-comment prompt",
         "editing_style_notes": "Music dip at 15s, forceful CTA hold to final frame"
       }
-=======
-    "topic": "Portal tampering is happening in plain sight",
-    "best_hook": "Fans are missing what this actually means: roster moves start before players even enter.",
-    "target_duration_seconds": 18,
-    "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
-    "music_style_suggestion": "Dark investigative hip-hop bed, 140 BPM",
-    "scenes": [
-      {"scene": 1, "timing_seconds": [0, 2], "line": "Portal starts before the portal.", "suggested_visual": "Face-cam whisper-to-shout open", "editing_style_notes": "Glitch text intro"},
-      {"scene": 2, "timing_seconds": [2, 6], "line": "Rumor timeline always beats official entries.", "suggested_visual": "Timeline graphic", "editing_style_notes": "Slide transitions"},
-      {"scene": 3, "timing_seconds": [6, 12], "line": "Everyone knows. Nobody enforces.", "suggested_visual": "Coach presser clips", "editing_style_notes": "Hard jump cuts"},
-      {"scene": 4, "timing_seconds": [12, 18], "line": "Real penalties: yes or no?", "suggested_visual": "Poll sticker", "editing_style_notes": "Beat drop + CTA hold"}
->>>>>>> main
     ]
   },
   {
     "content_pack_rank": 4,
-<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
     "topic": "The best coach in football might be in college not the NFL",
     "postability_score": 81.4,
     "best_hook": "You're wrong if you think the best coach in football might be in college not the nfl is only about talent.",
@@ -282,27 +197,14 @@
           13,
           18
         ],
-        "line": "If you disagree, prove it in one sentence with receipts \u2014 or admit your controversial takes takes are casual-tier.",
+        "line": "If you disagree, prove it in one sentence with receipts\u2014or admit your controversial takes take is casual-tier.",
         "suggested_visual": "Creator reaction + poll sticker + pinned-comment prompt",
         "editing_style_notes": "Music dip at 15s, forceful CTA hold to final frame"
       }
-=======
-    "topic": "Thunder might be too young to trust in late playoff games",
-    "best_hook": "Fans are missing what this actually means: playoff endings are a different sport.",
-    "target_duration_seconds": 18,
-    "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
-    "music_style_suggestion": "Tense cinematic trap, 146 BPM",
-    "scenes": [
-      {"scene": 1, "timing_seconds": [0, 2], "line": "OKC is elite — until crunch time.", "suggested_visual": "Face-cam + playoff logo", "editing_style_notes": "Punch zoom"},
-      {"scene": 2, "timing_seconds": [2, 6], "line": "Playoff endings are a different sport.", "suggested_visual": "Late-game possession clip", "editing_style_notes": "Slow-fast speed ramp"},
-      {"scene": 3, "timing_seconds": [6, 12], "line": "Who gets the bucket when pace dies?", "suggested_visual": "Shot clock + isolation clip", "editing_style_notes": "Clock SFX + caption flicker"},
-      {"scene": 4, "timing_seconds": [12, 18], "line": "Name the closer or admit they need one.", "suggested_visual": "Comment prompt", "editing_style_notes": "Drop instrumental and hold CTA"}
->>>>>>> main
     ]
   },
   {
     "content_pack_rank": 5,
-<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
     "topic": "Duke freshman hype train is already out of control",
     "postability_score": 83.0,
     "best_hook": "You're wrong if you think duke freshman hype train is already out of control is only about talent.",
@@ -346,27 +248,14 @@
           13,
           18
         ],
-        "line": "If you disagree, prove it in one sentence with receipts \u2014 or admit your college basketball takes are casual-tier.",
+        "line": "If you disagree, prove it in one sentence with receipts\u2014or admit your college basketball take is casual-tier.",
         "suggested_visual": "Creator reaction + poll sticker + pinned-comment prompt",
         "editing_style_notes": "Music dip at 15s, forceful CTA hold to final frame"
       }
-=======
-    "topic": "Top-100 recruit flips are all about brand deals now",
-    "best_hook": "Nobody is talking about this: \"fit\" is PR language, leverage is the real game.",
-    "target_duration_seconds": 18,
-    "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
-    "music_style_suggestion": "Minimal drill beat, 143 BPM",
-    "scenes": [
-      {"scene": 1, "timing_seconds": [0, 2], "line": "Recruiting fit is PR language.", "suggested_visual": "Face-cam over commit graphic", "editing_style_notes": "Text slam"},
-      {"scene": 2, "timing_seconds": [2, 6], "line": "Leverage is the real game.", "suggested_visual": "NIL valuation card", "editing_style_notes": "Quick cut zoom"},
-      {"scene": 3, "timing_seconds": [6, 12], "line": "Commitments are negotiation checkpoints.", "suggested_visual": "Decommit tweet montage", "editing_style_notes": "3 rapid cuts"},
-      {"scene": 4, "timing_seconds": [12, 18], "line": "Should players maximize value?", "suggested_visual": "Yes/No poll", "editing_style_notes": "Color split end card"}
->>>>>>> main
     ]
   },
   {
     "content_pack_rank": 6,
-<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
     "topic": "Kansas old-school roster build is either genius or cooked",
     "postability_score": 83.0,
     "best_hook": "You're wrong if you think kansas old-school roster build is either genius or cooked is only about talent.",
@@ -410,27 +299,14 @@
           13,
           18
         ],
-        "line": "If you disagree, prove it in one sentence with receipts \u2014 or admit your college basketball takes are casual-tier.",
+        "line": "If you disagree, prove it in one sentence with receipts\u2014or admit your college basketball take is casual-tier.",
         "suggested_visual": "Creator reaction + poll sticker + pinned-comment prompt",
         "editing_style_notes": "Music dip at 15s, forceful CTA hold to final frame"
       }
-=======
-    "topic": "Celtics title expectations are so high a close win feels like a loss",
-    "best_hook": "Fans are missing what this actually means: dominance standards can become mental baggage.",
-    "target_duration_seconds": 18,
-    "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
-    "music_style_suggestion": "Moody halftime trap, 141 BPM",
-    "scenes": [
-      {"scene": 1, "timing_seconds": [0, 2], "line": "Boston fans panic after wins.", "suggested_visual": "Face-cam + fan tweet wall", "editing_style_notes": "Tweet pop-ins"},
-      {"scene": 2, "timing_seconds": [2, 6], "line": "Perfection pressure is dangerous.", "suggested_visual": "Scoreboard + tight game clip", "editing_style_notes": "Beat-synced cuts"},
-      {"scene": 3, "timing_seconds": [6, 12], "line": "This is a mindset tax.", "suggested_visual": "Postgame reaction clip", "editing_style_notes": "Stutter transition"},
-      {"scene": 4, "timing_seconds": [12, 18], "line": "Are expectations helping or hurting?", "suggested_visual": "Poll overlay", "editing_style_notes": "Fade music for CTA clarity"}
->>>>>>> main
     ]
   },
   {
     "content_pack_rank": 7,
-<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
     "topic": "Knicks toughness is real but their half-court offense is suspect",
     "postability_score": 83.0,
     "best_hook": "You're wrong if you think knicks toughness is real but their half-court offense is suspect is only about talent.",
@@ -474,27 +350,14 @@
           13,
           18
         ],
-        "line": "If you disagree, prove it in one sentence with receipts \u2014 or admit your nba takes are casual-tier.",
+        "line": "If you disagree, prove it in one sentence with receipts\u2014or admit your nba take is casual-tier.",
         "suggested_visual": "Creator reaction + poll sticker + pinned-comment prompt",
         "editing_style_notes": "Music dip at 15s, forceful CTA hold to final frame"
       }
-=======
-    "topic": "The best coach in football might be in college not the NFL",
-    "best_hook": "Nobody is talking about this: college staffs are out-innovating NFL comfort zones.",
-    "target_duration_seconds": 18,
-    "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
-    "music_style_suggestion": "Percussive sports beat, 148 BPM",
-    "scenes": [
-      {"scene": 1, "timing_seconds": [0, 2], "line": "Best coach in football might coach Saturdays.", "suggested_visual": "Face-cam + split logo", "editing_style_notes": "Shock zoom"},
-      {"scene": 2, "timing_seconds": [2, 6], "line": "Innovation is happening in college.", "suggested_visual": "Play design animation", "editing_style_notes": "Line-draw effect"},
-      {"scene": 3, "timing_seconds": [6, 12], "line": "NFL systems look stale by comparison.", "suggested_visual": "Conservative play clip", "editing_style_notes": "Contrast edit"},
-      {"scene": 4, "timing_seconds": [12, 18], "line": "Name your best coach in football.", "suggested_visual": "Comment prompt", "editing_style_notes": "Cut music and hold question"}
->>>>>>> main
     ]
   },
   {
     "content_pack_rank": 8,
-<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
     "topic": "Thunder might be too young to trust in late playoff games",
     "postability_score": 83.0,
     "best_hook": "You're wrong if you think thunder might be too young to trust in late playoff games is only about talent.",
@@ -538,27 +401,14 @@
           13,
           18
         ],
-        "line": "If you disagree, prove it in one sentence with receipts \u2014 or admit your nba takes are casual-tier.",
+        "line": "If you disagree, prove it in one sentence with receipts\u2014or admit your nba take is casual-tier.",
         "suggested_visual": "Creator reaction + poll sticker + pinned-comment prompt",
         "editing_style_notes": "Music dip at 15s, forceful CTA hold to final frame"
       }
-=======
-    "topic": "UNC fans think this portal class is fake deep",
-    "best_hook": "Fans are missing what this actually means: depth doesn’t equal late-game creation.",
-    "target_duration_seconds": 18,
-    "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
-    "music_style_suggestion": "College arena trap remix, 144 BPM",
-    "scenes": [
-      {"scene": 1, "timing_seconds": [0, 2], "line": "UNC got deeper — but did they get deadlier?", "suggested_visual": "Face-cam + roster board", "editing_style_notes": "Text impact hit"},
-      {"scene": 2, "timing_seconds": [2, 6], "line": "Depth is not crunch-time creation.", "suggested_visual": "Late clock play clip", "editing_style_notes": "Slow motion accent"},
-      {"scene": 3, "timing_seconds": [6, 12], "line": "March rewards closers, not just rotation pieces.", "suggested_visual": "Tournament highlight contrast", "editing_style_notes": "Quick split comparisons"},
-      {"scene": 4, "timing_seconds": [12, 18], "line": "Who is UNC’s closer right now?", "suggested_visual": "Comment CTA card", "editing_style_notes": "Freeze + pulse effect"}
->>>>>>> main
     ]
   },
   {
     "content_pack_rank": 9,
-<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
     "topic": "Transfer portal turned mid-majors into one-year farms",
     "postability_score": 80.5,
     "best_hook": "You're wrong if you think transfer portal turned mid-majors into one-year farms is only about talent.",
@@ -602,27 +452,14 @@
           13,
           18
         ],
-        "line": "If you disagree, prove it in one sentence with receipts \u2014 or admit your transfer portal takes are casual-tier.",
+        "line": "If you disagree, prove it in one sentence with receipts\u2014or admit your transfer portal take is casual-tier.",
         "suggested_visual": "Creator reaction + poll sticker + pinned-comment prompt",
         "editing_style_notes": "Music dip at 15s, forceful CTA hold to final frame"
       }
-=======
-    "topic": "Super teams do not fail because of talent they fail because of ego",
-    "best_hook": "Nobody is talking about this: super teams fail when stars refuse role clarity.",
-    "target_duration_seconds": 18,
-    "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
-    "music_style_suggestion": "Heavy 808 debate beat, 140 BPM",
-    "scenes": [
-      {"scene": 1, "timing_seconds": [0, 2], "line": "Super teams fail for one reason: ego.", "suggested_visual": "Face-cam + star collage", "editing_style_notes": "Hard cut opener"},
-      {"scene": 2, "timing_seconds": [2, 6], "line": "Talent isn't the issue. Role clarity is.", "suggested_visual": "Usage rate chart", "editing_style_notes": "Animated bars"},
-      {"scene": 3, "timing_seconds": [6, 12], "line": "Chemistry is structural, not optional.", "suggested_visual": "Body language montage", "editing_style_notes": "3-frame flash transitions"},
-      {"scene": 4, "timing_seconds": [12, 18], "line": "Name a super team that sacrificed and won.", "suggested_visual": "Question end card", "editing_style_notes": "Music cutoff + reverb tail"}
->>>>>>> main
     ]
   },
   {
     "content_pack_rank": 10,
-<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
     "topic": "Recruiting insiders are moving betting lines before the books",
     "postability_score": 80.0,
     "best_hook": "You're wrong if you think recruiting insiders are moving betting lines before the books is only about talent.",
@@ -666,25 +503,10 @@
           13,
           18
         ],
-        "line": "If you disagree, prove it in one sentence with receipts \u2014 or admit your recruiting drama takes are casual-tier.",
+        "line": "If you disagree, prove it in one sentence with receipts\u2014or admit your recruiting drama take is casual-tier.",
         "suggested_visual": "Creator reaction + poll sticker + pinned-comment prompt",
         "editing_style_notes": "Music dip at 15s, forceful CTA hold to final frame"
       }
     ]
   }
 ]
-=======
-    "topic": "A five-star decommit just exposed fake family culture pitches",
-    "best_hook": "This just changed everything for how fans read commitment graphics.",
-    "target_duration_seconds": 18,
-    "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
-    "music_style_suggestion": "Dark synth sports beat, 142 BPM",
-    "scenes": [
-      {"scene": 1, "timing_seconds": [0, 2], "line": "Commitment graphics are PR snapshots.", "suggested_visual": "Face-cam + commit post", "editing_style_notes": "Glitch intro"},
-      {"scene": 2, "timing_seconds": [2, 6], "line": "Decommitments are leverage signals.", "suggested_visual": "Timeline screen", "editing_style_notes": "Slide + zoom"},
-      {"scene": 3, "timing_seconds": [6, 12], "line": "Recruiting loyalty is now transactional branding.", "suggested_visual": "Insider board + reactions", "editing_style_notes": "Rapid montage"},
-      {"scene": 4, "timing_seconds": [12, 18], "line": "Should recruits be fully transactional?", "suggested_visual": "Binary poll card", "editing_style_notes": "High-contrast CTA finish"}
-    ]
-  }
-]
->>>>>>> main
