@@ -1,6 +1,6 @@
 {
   "run_id": 2,
-  "generated_at": "2026-04-16T20:24:07.445984+00:00",
+  "generated_at": "2026-04-16T20:54:26.934407+00:00",
   "source": "manual",
   "errors": [],
   "recommendations": [
@@ -8,13 +8,13 @@
       "engine_target": "topic scoring",
       "action": "increase",
       "focus": "recruiting",
-      "reason": "Best topic_performance by follower conversion (0.0129) and engagement (0.1561)."
+      "reason": "Best topic_performance by follower conversion (0.0079) and engagement (0.1017)."
     },
     {
       "engine_target": "topic scoring",
       "action": "decrease",
-      "focus": "highlights",
-      "reason": "Lowest topic_performance by follower conversion (0.0019)."
+      "focus": "transfer_portal",
+      "reason": "Lowest topic_performance by follower conversion (0.0001)."
     },
     {
       "engine_target": "hook recommendations",
@@ -25,8 +25,8 @@
     {
       "engine_target": "hook recommendations",
       "action": "decrease",
-      "focus": "funny_open",
-      "reason": "Lowest hook_performance by follower conversion (0.0020)."
+      "focus": "fan_callout",
+      "reason": "Lowest hook_performance by follower conversion (0.0000)."
     },
     {
       "engine_target": "posting recommendations",
@@ -38,7 +38,7 @@
       "engine_target": "posting recommendations",
       "action": "decrease",
       "focus": "late_night",
-      "reason": "Lowest timing_performance by follower conversion (0.0019)."
+      "reason": "Lowest timing_performance by follower conversion (0.0004)."
     },
     {
       "engine_target": "content planning",
@@ -50,7 +50,7 @@
       "engine_target": "content planning",
       "action": "decrease",
       "focus": "short",
-      "reason": "Lowest length_performance by follower conversion (0.0020)."
+      "reason": "Lowest length_performance by follower conversion (0.0006)."
     },
     {
       "engine_target": "content planning",
@@ -61,8 +61,8 @@
     {
       "engine_target": "content planning",
       "action": "decrease",
-      "focus": "meme_edit",
-      "reason": "Lowest video_style_performance by follower conversion (0.0020)."
+      "focus": "analyst_clip",
+      "reason": "Lowest video_style_performance by follower conversion (0.0000)."
     }
   ]
 }
