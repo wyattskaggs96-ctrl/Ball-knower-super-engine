@@ -11,6 +11,7 @@ from app.core.config import Settings
 from app.core.llm import LLMClient
 from app.db.database import get_connection, init_db
 from app.db.repository import Repository
+from app.feedback.engine_integration import feedback_report, run_feedback_loop
 from app.pipelines.run_daily_pipeline import run_daily_pipeline
 from app.pipelines.simulate_daily_sheet import simulate_daily_content_sheet
 from app.services.content_service import ContentService
@@ -61,6 +62,8 @@ def main() -> None:
 
     sub.add_parser("run-daily", help="Run full daily pipeline")
     sub.add_parser("simulate-daily", help="Simulate and export a creator-ready daily content sheet")
+    sub.add_parser("feedback-run", help="Run feedback loop agent from mock post-performance data")
+    sub.add_parser("feedback-report", help="Read latest generated weekly feedback report")
 
     export_p = sub.add_parser("export", help="Export content packs")
     export_p.add_argument("--format", choices=["json", "markdown", "both"], default="both")
@@ -93,6 +96,11 @@ def main() -> None:
     elif args.command == "simulate-daily":
         result = simulate_daily_content_sheet()
         print(result)
+    elif args.command == "feedback-run":
+        result = run_feedback_loop(repo, settings.export_dir)
+        print(result)
+    elif args.command == "feedback-report":
+        print(feedback_report(settings.export_dir))
     elif args.command == "export":
         ids = parse_id_list(args.ids)
         if args.format in {"json", "both"}:
