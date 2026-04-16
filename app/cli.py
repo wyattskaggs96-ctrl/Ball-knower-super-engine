@@ -12,6 +12,7 @@ from app.core.llm import LLMClient
 from app.db.database import get_connection, init_db
 from app.db.repository import Repository
 from app.pipelines.run_daily_pipeline import run_daily_pipeline
+from app.pipelines.simulate_daily_sheet import simulate_daily_content_sheet
 from app.services.content_service import ContentService
 from app.services.export_service import ExportService
 from app.services.trend_service import TrendService
@@ -59,6 +60,7 @@ def main() -> None:
     script_p.add_argument("hook_id", type=int)
 
     sub.add_parser("run-daily", help="Run full daily pipeline")
+    sub.add_parser("simulate-daily", help="Simulate and export a creator-ready daily content sheet")
 
     export_p = sub.add_parser("export", help="Export content packs")
     export_p.add_argument("--format", choices=["json", "markdown", "both"], default="both")
@@ -87,6 +89,9 @@ def main() -> None:
             print(f"Created content pack {pack.id} from hook {args.hook_id}")
     elif args.command == "run-daily":
         result = run_daily_pipeline(trend_service, content_service, settings.score_threshold)
+        print(result)
+    elif args.command == "simulate-daily":
+        result = simulate_daily_content_sheet()
         print(result)
     elif args.command == "export":
         ids = parse_id_list(args.ids)

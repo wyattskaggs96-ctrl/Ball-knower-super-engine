@@ -15,22 +15,31 @@ class ScriptGeneratorAgent:
         hook = self.repo.get_hook(hook_id)
         if not hook:
             return None
+
         trend = self.repo.get_trend_candidate(hook.trend_candidate_id)
         if not trend:
             return None
 
-        _ = self.llm.generate(SCRIPT_PROMPT, hook.hook_text)
+        _ = self.llm.generate(SCRIPT_PROMPT, f"hook={hook.hook_text}; trend={trend.topic}")
+
         pack = ContentPack(
             trend_candidate_id=trend.id,
             hook_id=hook.id,
             overlay_lines=[
+                "BALL KNOWER ALERT 🚨",
                 hook.hook_text,
-                f"Context: {trend.topic}",
-                "Drop your take below 👇",
+                f"Topic: {trend.topic}",
+                "Receipts in 3 points. Pick a side.",
             ],
-            caption=f"{hook.hook_text} #sports #fyp",
-            cta="Comment your hottest take and follow for daily sports breakdowns.",
-            creator_notes="Keep first 2 seconds punchy. Use stat graphic at 0:04. End with opinion split question.",
+            caption=(
+                f"{hook.hook_text} This take is dividing real fans. "
+                "Are we overrating narratives or ignoring obvious flaws? #ballknower #sportsdebate #fyp"
+            ),
+            cta="Drop your verdict in one sentence and tag the friend who argues this every week.",
+            creator_notes=(
+                "Open with hook in first 1.5s. Use hard cut to stat/clip at 0:03. "
+                "Deliver point-counterpoint quickly, then force a binary poll at the end."
+            ),
         )
         pack.id = self.repo.insert_content_pack(pack)
         return pack
