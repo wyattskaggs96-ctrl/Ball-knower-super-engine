@@ -58,3 +58,77 @@ CREATE TABLE IF NOT EXISTS performance_logs (
   logged_at TEXT NOT NULL,
   FOREIGN KEY(content_pack_id) REFERENCES content_packs(id)
 );
+
+CREATE TABLE IF NOT EXISTS posts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  platform TEXT NOT NULL,
+  post_timestamp TEXT NOT NULL,
+  views REAL NOT NULL DEFAULT 0,
+  likes REAL NOT NULL DEFAULT 0,
+  comments REAL NOT NULL DEFAULT 0,
+  shares REAL NOT NULL DEFAULT 0,
+  saves REAL NOT NULL DEFAULT 0,
+  profile_views REAL NOT NULL DEFAULT 0,
+  followers_gained REAL NOT NULL DEFAULT 0,
+  watch_time REAL NOT NULL DEFAULT 0,
+  completion_rate REAL NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS post_metadata (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  post_id INTEGER NOT NULL,
+  hook_type TEXT NOT NULL,
+  topic_type TEXT NOT NULL,
+  length_seconds REAL NOT NULL,
+  teams_tagged TEXT NOT NULL DEFAULT '[]',
+  players_tagged TEXT NOT NULL DEFAULT '[]',
+  video_style TEXT NOT NULL,
+  FOREIGN KEY(post_id) REFERENCES posts(id)
+);
+
+CREATE TABLE IF NOT EXISTS performance_metrics (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  post_id INTEGER NOT NULL,
+  follower_conversion_rate REAL NOT NULL,
+  engagement_rate REAL NOT NULL,
+  comment_rate REAL NOT NULL,
+  share_rate REAL NOT NULL,
+  save_rate REAL NOT NULL,
+  created_at TEXT NOT NULL,
+  FOREIGN KEY(post_id) REFERENCES posts(id)
+);
+
+CREATE TABLE IF NOT EXISTS agent_runs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  agent_name TEXT NOT NULL,
+  status TEXT NOT NULL,
+  run_started_at TEXT NOT NULL,
+  run_finished_at TEXT,
+  notes TEXT
+);
+
+CREATE TABLE IF NOT EXISTS grouped_insights (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  run_id INTEGER NOT NULL,
+  insight_type TEXT NOT NULL,
+  insight_key TEXT NOT NULL,
+  posts_count INTEGER NOT NULL,
+  avg_views REAL NOT NULL,
+  avg_follower_conversion_rate REAL NOT NULL,
+  avg_engagement_rate REAL NOT NULL,
+  avg_completion_rate REAL NOT NULL,
+  created_at TEXT NOT NULL,
+  FOREIGN KEY(run_id) REFERENCES agent_runs(id)
+);
+
+CREATE TABLE IF NOT EXISTS engine_recommendations (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  run_id INTEGER NOT NULL,
+  engine_target TEXT NOT NULL,
+  action TEXT NOT NULL,
+  focus TEXT NOT NULL,
+  reason TEXT NOT NULL,
+  priority TEXT NOT NULL,
+  created_at TEXT NOT NULL,
+  FOREIGN KEY(run_id) REFERENCES agent_runs(id)
+);
