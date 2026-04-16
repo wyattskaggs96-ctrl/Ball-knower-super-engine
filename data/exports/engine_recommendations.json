@@ -1,24 +1,26 @@
 {
-  "run_id": 1,
-  "generated_at": "2026-04-16T20:03:29.301134+00:00",
+  "run_id": 2,
+  "generated_at": "2026-04-16T20:24:07.445984+00:00",
+  "source": "manual",
+  "errors": [],
   "recommendations": [
     {
       "engine_target": "topic scoring",
       "action": "increase",
       "focus": "recruiting",
-      "reason": "Best topic_performance by follower conversion (0.0113) and engagement (0.1467)."
+      "reason": "Best topic_performance by follower conversion (0.0129) and engagement (0.1561)."
     },
     {
       "engine_target": "topic scoring",
       "action": "decrease",
       "focus": "highlights",
-      "reason": "Lowest topic_performance by follower conversion (0.0016)."
+      "reason": "Lowest topic_performance by follower conversion (0.0019)."
     },
     {
       "engine_target": "hook recommendations",
       "action": "increase",
       "focus": "stat_shock",
-      "reason": "Best hook_performance by follower conversion (0.0119) and engagement (0.1611)."
+      "reason": "Best hook_performance by follower conversion (0.0131) and engagement (0.1570)."
     },
     {
       "engine_target": "hook recommendations",
@@ -30,19 +32,19 @@
       "engine_target": "posting recommendations",
       "action": "increase",
       "focus": "afternoon",
-      "reason": "Best timing_performance by follower conversion (0.0114) and engagement (0.1589)."
+      "reason": "Best timing_performance by follower conversion (0.0099) and engagement (0.1387)."
     },
     {
       "engine_target": "posting recommendations",
       "action": "decrease",
       "focus": "late_night",
-      "reason": "Lowest timing_performance by follower conversion (0.0016)."
+      "reason": "Lowest timing_performance by follower conversion (0.0019)."
     },
     {
       "engine_target": "content planning",
       "action": "increase",
-      "focus": "long",
-      "reason": "Best length_performance by follower conversion (0.0106) and engagement (0.1267)."
+      "focus": "medium",
+      "reason": "Best length_performance by follower conversion (0.0115) and engagement (0.1479)."
     },
     {
       "engine_target": "content planning",
@@ -54,7 +56,7 @@
       "engine_target": "content planning",
       "action": "increase",
       "focus": "facecam_breakdown",
-      "reason": "Best video_style_performance by follower conversion (0.0116) and engagement (0.1567)."
+      "reason": "Best video_style_performance by follower conversion (0.0129) and engagement (0.1561)."
     },
     {
       "engine_target": "content planning",

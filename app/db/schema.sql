@@ -132,3 +132,13 @@ CREATE TABLE IF NOT EXISTS engine_recommendations (
   created_at TEXT NOT NULL,
   FOREIGN KEY(run_id) REFERENCES agent_runs(id)
 );
+
+CREATE TABLE IF NOT EXISTS post_sources (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  post_id INTEGER NOT NULL,
+  source TEXT NOT NULL,
+  source_post_id TEXT,
+  post_url TEXT,
+  created_at TEXT NOT NULL,
+  FOREIGN KEY(post_id) REFERENCES posts(id)
+);
