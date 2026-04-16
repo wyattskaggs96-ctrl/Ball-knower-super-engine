@@ -10,6 +10,24 @@ from app.sources import manual_source
 
 def _hooks_for_topic(topic: str) -> list[str]:
     t = topic.strip().rstrip("?.!")
+<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
+    lower = t.lower()
+    return [
+        f"Direct challenge: defend {lower} without using lazy narratives.",
+        f"Unpopular opinion: {lower} is getting treated like a solved problem when it's not.",
+        f"You're wrong if you think {lower} is only about talent.",
+        f"Casual fans think {lower} is obvious — real watchers know it's messy.",
+        f"Pick a side: {lower} is overrated or underrated right now.",
+    ]
+
+
+def _pick_hook(hooks: list[str], postability_score: float) -> str:
+    if postability_score >= 84:
+        return hooks[0]
+    if postability_score >= 78:
+        return hooks[2]
+    return hooks[4]
+=======
     return [
         f"Nobody is talking about this: {t.lower()} is the real fault line.",
         f"This just changed everything for {t.lower()}.",
@@ -25,6 +43,7 @@ def _pick_hook(hooks: list[str], score: float) -> str:
     if score >= 82:
         return hooks[1]
     return hooks[2]
+>>>>>>> main
 
 
 def _score_reasoning(topic: TrendCandidate, score_breakdown: dict) -> str:
@@ -37,6 +56,48 @@ def _score_reasoning(topic: TrendCandidate, score_breakdown: dict) -> str:
     )
 
 
+<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
+def _postability_components(topic: TrendCandidate, score_breakdown: dict) -> dict:
+    lower_topic = topic.topic.lower()
+
+    audience_size = 92.0 if any(k in lower_topic for k in ["nba", "nfl", "lakers", "cowboys", "celtics"]) else 78.0
+    clip_availability = 90.0 if topic.sport in {"nba", "nfl", "college basketball"} else 75.0
+    controversy = score_breakdown["controversy"]
+    comment_potential = 93.0 if any(
+        k in lower_topic for k in ["debate", "overrated", "underrated", "controvers", "trade", "portal", "decommit"]
+    ) else 80.0
+    speed_to_post = 90.0 if any(k in topic.sport for k in ["nba", "nfl", "college basketball", "recruiting drama"]) else 76.0
+
+    return {
+        "audience_size": audience_size,
+        "clip_availability": clip_availability,
+        "controversy": controversy,
+        "comment_potential": comment_potential,
+        "speed_to_post": speed_to_post,
+    }
+
+
+def _postability_score(topic: TrendCandidate, score_breakdown: dict) -> tuple[float, dict]:
+    components = _postability_components(topic, score_breakdown)
+    score = (
+        components["audience_size"] * 0.25
+        + components["clip_availability"] * 0.2
+        + components["controversy"] * 0.2
+        + components["comment_potential"] * 0.2
+        + components["speed_to_post"] * 0.15
+    )
+    return round(score, 2), components
+
+
+def _build_cta(topic: TrendCandidate) -> str:
+    return (
+        f"If you disagree, prove it in one sentence with receipts — "
+        f"or admit your {topic.sport} takes are casual-tier."
+    )
+
+
+=======
+>>>>>>> main
 def _build_pack(topic: TrendCandidate, selected_hook: str, idx: int) -> ContentPack:
     return ContentPack(
         id=idx,
@@ -45,6 +106,20 @@ def _build_pack(topic: TrendCandidate, selected_hook: str, idx: int) -> ContentP
         overlay_lines=[
             "BALL KNOWER EMERGENCY MEETING 🚨",
             selected_hook,
+<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
+            "One side is lying to themselves.",
+            "Pick your side and defend it.",
+        ],
+        caption=(
+            f"{selected_hook} If this offends you, good. "
+            "Most sports takes collapse the second they're challenged. "
+            "#ballknower #sportstok #debate"
+        ),
+        cta=_build_cta(topic),
+        creator_notes=(
+            f"Footage plan for {topic.sport}: 0-2s face-cam challenge, 2-6s stat card, "
+            "6-13s clip montage with hard cuts, 13-18s reaction + pinned-comment bait."
+=======
             "This is bigger than one headline.",
             "Pick a side before the comments explode.",
         ],
@@ -58,6 +133,7 @@ def _build_pack(topic: TrendCandidate, selected_hook: str, idx: int) -> ContentP
             f"Footage plan for {topic.sport}: open with 1 face-cam hot take (0-2s), "
             "cut to stat graphic (2-6s), insert game/recruiting/press clip (6-14s), "
             "end on creator reaction with on-screen poll."
+>>>>>>> main
         ),
     )
 
@@ -73,13 +149,36 @@ def _build_video_blueprint(rows: list[dict]) -> list[dict]:
                 "scene": 1,
                 "timing_seconds": [0, 2],
                 "line": selected_hook,
+<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
+                "suggested_visual": "Tight face-cam opener with subtitle slam",
+                "editing_style_notes": "0.2s zoom punch + bass hit + red caption emphasis",
+=======
                 "suggested_visual": "Tight face-cam opener with bold text pop-in",
                 "editing_style_notes": "0.2s zoom punch + whoosh SFX + subtitle emphasis",
+>>>>>>> main
             },
             {
                 "scene": 2,
                 "timing_seconds": [2, 6],
                 "line": overlay_lines[2],
+<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
+                "suggested_visual": "Stat card + headline screenshot with highlighted keywords",
+                "editing_style_notes": "Fast swipe + shake transition; keep text under 7 words",
+            },
+            {
+                "scene": 3,
+                "timing_seconds": [6, 13],
+                "line": row["score_reasoning"],
+                "suggested_visual": "Clip montage (game/recruiting/presser) supporting main argument",
+                "editing_style_notes": "3 jump cuts + speed ramps + beat-synced captions",
+            },
+            {
+                "scene": 4,
+                "timing_seconds": [13, 18],
+                "line": row["content_pack"]["cta"],
+                "suggested_visual": "Creator reaction + poll sticker + pinned-comment prompt",
+                "editing_style_notes": "Music dip at 15s, forceful CTA hold to final frame",
+=======
                 "suggested_visual": "Stat card or headline screenshot supporting the take",
                 "editing_style_notes": "Fast cut with light shake transition and highlighted keywords",
             },
@@ -96,6 +195,7 @@ def _build_video_blueprint(rows: list[dict]) -> list[dict]:
                 "line": row["content_pack"]["cta"],
                 "suggested_visual": "Creator reaction + comment bait poll overlay",
                 "editing_style_notes": "Hard stop music hit at second 15, lingering CTA text to second 18",
+>>>>>>> main
             },
         ]
 
@@ -103,10 +203,18 @@ def _build_video_blueprint(rows: list[dict]) -> list[dict]:
             {
                 "content_pack_rank": idx,
                 "topic": row["topic"],
+<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
+                "postability_score": row["postability_score"],
+                "best_hook": selected_hook,
+                "target_duration_seconds": 18,
+                "pacing_profile": "TikTok fast-cut / high-retention / confrontation-first opener",
+                "music_style_suggestion": "Aggressive trap-sports beat at 140-150 BPM with punchy transitions",
+=======
                 "best_hook": selected_hook,
                 "target_duration_seconds": 18,
                 "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
                 "music_style_suggestion": "Aggressive trap-sports beat at 140-150 BPM with bass drops",
+>>>>>>> main
                 "scenes": scenes,
             }
         )
@@ -126,6 +234,10 @@ def _render_markdown(rows: list[dict]) -> str:
         lines.extend(
             [
                 f"## {i}. {row['topic']}",
+<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
+                f"- **Postability score:** {row['postability_score']} (audience={row['postability_components']['audience_size']}, clips={row['postability_components']['clip_availability']}, controversy={row['postability_components']['controversy']}, comments={row['postability_components']['comment_potential']}, speed={row['postability_components']['speed_to_post']})",
+=======
+>>>>>>> main
                 f"- **Score:** {row['score']}",
                 f"- **Score reasoning:** {row['score_reasoning']}",
                 "- **Hooks (3-5):**",
@@ -157,6 +269,22 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
     trends = manual_source.fetch_trends()
     scoring = ScoringEngine()
 
+<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
+    ranked: list[tuple[TrendCandidate, dict, float, dict, float]] = []
+    for trend in trends:
+        scored = scoring.score(trend)
+        postability, components = _postability_score(trend, scored)
+        final_rank_score = round(scored["total_score"] * 0.5 + postability * 0.5, 2)
+        ranked.append((trend, scored, postability, components, final_rank_score))
+
+    ranked.sort(key=lambda item: item[4], reverse=True)
+    top = ranked[:10]
+
+    rows: list[dict] = []
+    for idx, (trend, scored, postability, components, final_rank_score) in enumerate(top, start=1):
+        hooks = _hooks_for_topic(trend.topic)
+        selected_hook = _pick_hook(hooks, postability)
+=======
     ranked: list[tuple[TrendCandidate, dict]] = []
     for trend in trends:
         scored = scoring.score(trend)
@@ -169,12 +297,19 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
     for idx, (trend, scored) in enumerate(top, start=1):
         hooks = _hooks_for_topic(trend.topic)
         selected_hook = _pick_hook(hooks, scored["total_score"])
+>>>>>>> main
         content_pack = _build_pack(trend, selected_hook, idx)
 
         rows.append(
             {
                 "topic": trend.topic,
                 "score": scored["total_score"],
+<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
+                "postability_score": postability,
+                "postability_components": components,
+                "final_rank_score": final_rank_score,
+=======
+>>>>>>> main
                 "score_reasoning": _score_reasoning(trend, scored),
                 "hooks": hooks[:5],
                 "selected_hook": selected_hook,

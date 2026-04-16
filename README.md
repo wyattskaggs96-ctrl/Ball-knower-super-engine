@@ -5,7 +5,11 @@ Ball Knower Engine is a modular, CLI-first Python project for aggressive, debate
 ## What V1 does
 
 1. Ingests trending sports topics from simple adapters (RSS, Reddit, manual).
+<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
+2. Scores trends with a weighted rubric plus a postability score for prioritization.
+=======
 2. Scores trends with a weighted rubric.
+>>>>>>> main
 3. Generates TikTok-style hooks for recommended topics.
 4. Generates a final content pack (overlay lines, caption, CTA, creator notes).
 5. Stores pipeline outputs in SQLite.
@@ -91,12 +95,21 @@ Use the prebuilt review artifact:
 - `data/exports/video_blueprint.json`
 
 What to evaluate in this file:
+<<<<<<< codex/build-v1-of-ball-knower-engine-cli-nz4q8p
+- Top 10 selected topics are re-ranked using postability + score blend.
+- Each topic includes score reasoning (why this is worth posting now).
+- Each topic includes 3-5 hooks with non-repetitive openings and mixed debate styles.
+- A best hook is selected for execution.
+- Overlay text is broken into TikTok-style short lines.
+- Caption, CTA, and creator footage notes are creator-ready, confrontational, and debate-first.
+=======
 - Top 10 selected topics are ranked by score.
 - Each topic includes score reasoning (why this is worth posting now).
 - Each topic includes 3-5 hooks in Ball Knower tone.
 - A best hook is selected for execution.
 - Overlay text is broken into TikTok-style short lines.
 - Caption, CTA, and creator footage notes are creator-ready and debate-first.
+>>>>>>> main
 - Video blueprint includes scene timing, visuals, edit style, and music style suggestions.
 
 This gives product/editor stakeholders a static, reviewable daily sheet even when runtime execution or APIs are unavailable.
