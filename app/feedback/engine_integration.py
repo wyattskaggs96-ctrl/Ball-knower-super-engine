@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from app.db.repository import Repository
-from app.feedback.ingest import load_mock_posts
+from app.feedback.ingest import load_posts_by_source
 from app.feedback.insights import generate_grouped_insights
 from app.feedback.metrics import add_post_metrics, build_grouped_performance
 from app.feedback.normalize import normalize_posts
@@ -20,17 +20,29 @@ def _write_markdown(path: Path, title: str, lines: list[str]) -> str:
     return str(path)
 
 
+def import_manual_analytics(repo: Repository, file_path: str) -> dict[str, int | list[str]]:
+    posts, errors = load_posts_by_source("manual", file_path)
+    if not posts:
+        return {"imported": 0, "errors": errors}
+
+    normalized = add_post_metrics(normalize_posts(posts))
+    _persist_run(repo, normalized, {}, [], [], run_note="manual analytics import", source="manual")
+    return {"imported": len(normalized), "errors": errors}
+
+
 def _persist_run(
     repo: Repository,
     posts: list[dict],
     grouped_performance: dict[str, list[dict]],
     insights: list[dict],
     recommendations: list[dict],
+    run_note: str,
+    source: str,
 ) -> int:
     now = datetime.now(timezone.utc).isoformat()
     cur = repo.conn.execute(
         "INSERT INTO agent_runs (agent_name, status, run_started_at, run_finished_at, notes) VALUES (?, ?, ?, ?, ?)",
-        ("feedback_loop_agent", "completed", now, now, "mock feedback run"),
+        ("feedback_loop_agent", "completed", now, now, run_note),
     )
     run_id = int(cur.lastrowid)
 
@@ -70,6 +82,13 @@ def _persist_run(
                 json.dumps(post.get("players_tagged", [])),
                 post["video_style"],
             ),
+        )
+        repo.conn.execute(
+            """
+            INSERT INTO post_sources (post_id, source, source_post_id, post_url, created_at)
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (post_id, source, str(post.get("post_id", "")), str(post.get("post_url", "")), now),
         )
         repo.conn.execute(
             """
@@ -127,25 +146,39 @@ def _persist_run(
     return run_id
 
 
-def run_feedback_loop(repo: Repository, export_dir: str) -> dict[str, str]:
-    posts = add_post_metrics(normalize_posts(load_mock_posts()))
-    grouped_performance = build_grouped_performance(posts)
+def run_feedback_loop(repo: Repository, export_dir: str, source: str = "mock", manual_file: str | None = None) -> dict[str, str]:
+    posts, errors = load_posts_by_source(source, manual_file or "data/manual_tiktok_analytics.csv")
+    processed_posts = add_post_metrics(normalize_posts(posts))
+    grouped_performance = build_grouped_performance(processed_posts)
     insights = generate_grouped_insights(grouped_performance)
     recommendations = generate_recommendations(grouped_performance)
 
-    run_id = _persist_run(repo, posts, grouped_performance, insights, recommendations)
+    run_id = _persist_run(
+        repo,
+        processed_posts,
+        grouped_performance,
+        insights,
+        recommendations,
+        run_note=f"feedback run source={source}",
+        source=source,
+    )
 
     export_path = Path(export_dir)
     daily_lines = [*map(lambda i: i["summary"], insights)] + [
         f"Run ID: {run_id}",
         f"Scheduler interval: {schedule_stub()['interval']}",
+        f"Source: {source}",
     ]
+    if errors:
+        daily_lines.append(f"Skipped invalid manual rows: {len(errors)}")
     daily_feedback = _write_markdown(export_path / "daily_feedback.md", "Daily Feedback", daily_lines)
 
     weekly_lines = [
         "Top priorities for next cycle:",
         *[f"{rec['action']} {rec['focus']} for {rec['engine_target']}" for rec in recommendations[:8]],
     ]
+    if errors:
+        weekly_lines.append(f"Manual intake validation errors: {len(errors)}")
     weekly_review = _write_markdown(export_path / "weekly_review.md", "Weekly Review", weekly_lines)
 
     json_path = export_path / "engine_recommendations.json"
@@ -154,6 +187,8 @@ def run_feedback_loop(repo: Repository, export_dir: str) -> dict[str, str]:
             {
                 "run_id": run_id,
                 "generated_at": datetime.now(timezone.utc).isoformat(),
+                "source": source,
+                "errors": errors,
                 "recommendations": recommendations,
             },
             indent=2,

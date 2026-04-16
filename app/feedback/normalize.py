@@ -13,6 +13,7 @@ NUMERIC_FIELDS = {
     "profile_views",
     "followers_gained",
     "watch_time",
+    "watch_time_seconds",
     "completion_rate",
     "length_seconds",
 }
@@ -44,6 +45,10 @@ def normalize_posts(raw_posts: list[dict[str, Any]]) -> list[dict[str, Any]]:
         item = dict(post)
         for field in NUMERIC_FIELDS:
             item[field] = float(item.get(field, 0) or 0)
+
+        item.setdefault("post_id", "")
+        item.setdefault("post_url", "")
+        item["watch_time"] = float(item.get("watch_time", item.get("watch_time_seconds", 0)) or 0)
 
         timestamp = datetime.fromisoformat(str(item["post_timestamp"]).replace("Z", "+00:00"))
         item["post_timestamp"] = timestamp.isoformat()
