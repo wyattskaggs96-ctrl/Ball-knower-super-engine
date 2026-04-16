@@ -11,6 +11,7 @@ Ball Knower Engine is a modular, CLI-first Python project for aggressive, debate
 5. Stores pipeline outputs in SQLite.
 6. Exports content packs to JSON and Markdown.
 7. Simulates a creator-ready daily content sheet from curated trend data.
+8. Generates a scene-by-scene TikTok video blueprint JSON for production handoff.
 
 ## Architecture
 
@@ -87,6 +88,7 @@ python main.py export --format json --ids 1,2
 
 Use the prebuilt review artifact:
 - `data/exports/example_output.md`
+- `data/exports/video_blueprint.json`
 
 What to evaluate in this file:
 - Top 10 selected topics are ranked by score.
@@ -95,6 +97,7 @@ What to evaluate in this file:
 - A best hook is selected for execution.
 - Overlay text is broken into TikTok-style short lines.
 - Caption, CTA, and creator footage notes are creator-ready and debate-first.
+- Video blueprint includes scene timing, visuals, edit style, and music style suggestions.
 
 This gives product/editor stakeholders a static, reviewable daily sheet even when runtime execution or APIs are unavailable.
 
@@ -104,7 +107,7 @@ Current V1 is intentionally mock-first and simulation-friendly. As integrations 
 - Replace mock source adapters with real RSS/Reddit/social ingestion.
 - Keep the same `TrendCandidate -> TrendScore -> Hook -> ContentPack` flow.
 - Route LLM calls through `app/core/llm.py` with real provider backends.
-- Keep markdown/json export format stable so creator ops workflows do not break.
+- Keep markdown/json/video-blueprint export formats stable so creator ops workflows do not break.
 
 In other words: the review artifact format already matches the eventual production handoff format.
 
@@ -120,6 +123,7 @@ All config is environment-variable based. See `.env.example`.
 - DB schema is in `app/db/schema.sql`.
 - Repo layer is in `app/db/repository.py`.
 - Daily sheet example output is at `data/exports/example_output.md`.
+- Video blueprint output is at `data/exports/video_blueprint.json`.
 
 ## Testing
 

@@ -62,6 +62,58 @@ def _build_pack(topic: TrendCandidate, selected_hook: str, idx: int) -> ContentP
     )
 
 
+def _build_video_blueprint(rows: list[dict]) -> list[dict]:
+    blueprint: list[dict] = []
+    for idx, row in enumerate(rows, start=1):
+        selected_hook = row["selected_hook"]
+        overlay_lines = row["content_pack"]["overlay_lines"]
+
+        scenes = [
+            {
+                "scene": 1,
+                "timing_seconds": [0, 2],
+                "line": selected_hook,
+                "suggested_visual": "Tight face-cam opener with bold text pop-in",
+                "editing_style_notes": "0.2s zoom punch + whoosh SFX + subtitle emphasis",
+            },
+            {
+                "scene": 2,
+                "timing_seconds": [2, 6],
+                "line": overlay_lines[2],
+                "suggested_visual": "Stat card or headline screenshot supporting the take",
+                "editing_style_notes": "Fast cut with light shake transition and highlighted keywords",
+            },
+            {
+                "scene": 3,
+                "timing_seconds": [6, 12],
+                "line": row["score_reasoning"],
+                "suggested_visual": "Game clip / press clip / recruiting clip tied to argument",
+                "editing_style_notes": "2-3 jump cuts, captions kept under 7 words per beat",
+            },
+            {
+                "scene": 4,
+                "timing_seconds": [12, 18],
+                "line": row["content_pack"]["cta"],
+                "suggested_visual": "Creator reaction + comment bait poll overlay",
+                "editing_style_notes": "Hard stop music hit at second 15, lingering CTA text to second 18",
+            },
+        ]
+
+        blueprint.append(
+            {
+                "content_pack_rank": idx,
+                "topic": row["topic"],
+                "best_hook": selected_hook,
+                "target_duration_seconds": 18,
+                "pacing_profile": "TikTok fast-cut / high-retention / first-2-second hook",
+                "music_style_suggestion": "Aggressive trap-sports beat at 140-150 BPM with bass drops",
+                "scenes": scenes,
+            }
+        )
+
+    return blueprint
+
+
 def _render_markdown(rows: list[dict]) -> str:
     lines = [
         "# Ball Knower Daily Content Sheet (Simulated)",
@@ -126,7 +178,7 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
                 "score_reasoning": _score_reasoning(trend, scored),
                 "hooks": hooks[:5],
                 "selected_hook": selected_hook,
-                "content_pack": content_pack.model_dump(),
+                "content_pack": content_pack.model_dump(mode="json"),
             }
         )
 
@@ -137,8 +189,13 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
     json_path = out_path.with_suffix(".json")
     json_path.write_text(json.dumps(rows, indent=2), encoding="utf-8")
 
+    video_blueprint = _build_video_blueprint(rows)
+    blueprint_path = out_path.parent / "video_blueprint.json"
+    blueprint_path.write_text(json.dumps(video_blueprint, indent=2), encoding="utf-8")
+
     return {
         "top_topics": len(rows),
         "markdown_output": str(out_path),
         "json_output": str(json_path),
+        "video_blueprint_output": str(blueprint_path),
     }
