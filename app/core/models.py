@@ -9,6 +9,10 @@ from pydantic import BaseModel, Field
 class TrendCandidate(BaseModel):
     id: Optional[int] = None
     source: str
+    source_name: Optional[str] = None
+    source_type: str = "unknown"
+    source_priority: int = 50
+    source_timestamp: Optional[datetime] = None
     topic: str
     summary: str
     url: Optional[str] = None

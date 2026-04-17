@@ -24,8 +24,14 @@ def test_simulate_daily_content_sheet_merges_and_dedupes_live_trends(monkeypatch
     assert result["live_trends_fetched"] == 2
     assert result["live_trends_ingested"] == 1
     assert result["total_trends_considered"] == 2
+    assert result["source_contributions"]["manual_curated"]["ingested"] == 1
+    assert result["source_contributions"]["newsapi_live"]["ingested"] == 1
 
     rows = json.loads((tmp_path / "daily_content_sheet.json").read_text(encoding="utf-8"))
     topics = {row["topic"].lower() for row in rows}
     assert "nba finals debate" in topics
     assert "celtics trade rumor heats up" in topics
+    for row in rows:
+        assert "source_name" in row
+        assert "source_type" in row
+        assert "source_priority" in row
