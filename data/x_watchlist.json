@@ -1,0 +1,29 @@
+[
+  {
+    "topic": "Portal rumor watch: SEC quarterback expected to enter transfer portal",
+    "source_account": "@CFBInsider",
+    "url": "https://x.com/CFBInsider/status/1000000000000000001",
+    "summary": "Multiple beat reporters are signaling movement after spring depth-chart shifts.",
+    "urgency": "high",
+    "tags": ["SEC", "quarterback", "transfer portal"],
+    "topic_type": "transfer_portal"
+  },
+  {
+    "topic": "Recruiting buzz: Five-star WR expected to announce commitment this weekend",
+    "source_account": "@RecruitingIntel",
+    "url": "https://x.com/RecruitingIntel/status/1000000000000000002",
+    "summary": "National recruiting accounts are tracking final visits and NIL meetings.",
+    "urgency": "medium",
+    "tags": ["recruiting", "wide receiver", "commitment"],
+    "topic_type": "recruiting"
+  },
+  {
+    "topic": "NBA Playoff overtime finish trends after viral game-winner clip",
+    "source_account": "@HoopsPulse",
+    "url": "https://x.com/HoopsPulse/status/1000000000000000003",
+    "summary": "Highlight packages are spiking and fan sentiment is heavily engaged.",
+    "urgency": "medium",
+    "tags": ["NBA", "playoffs", "viral"],
+    "topic_type": "championship"
+  }
+]

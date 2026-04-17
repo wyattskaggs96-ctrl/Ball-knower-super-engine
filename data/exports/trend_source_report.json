@@ -1,0 +1,346 @@
+{
+  "totals": {
+    "items": 9,
+    "sources": 4
+  },
+  "source_item_counts": {
+    "espn": 2,
+    "bleacher_report": 2,
+    "on3": 2,
+    "x_watchlist": 3
+  },
+  "top_trends_by_source": {
+    "espn": [
+      {
+        "source": "espn",
+        "source_type": "public_feed_fallback",
+        "title": "NFL draft buzz: teams weighing a surprise first-round trade",
+        "url": "https://www.espn.com/nfl/draft/",
+        "summary": "Public fallback headline used when ESPN RSS is unavailable in this environment.",
+        "team_tags": [],
+        "player_tags": [],
+        "topic_type": "breaking_news",
+        "urgency": "high",
+        "trend_weight": 1.9,
+        "collected_at": "2026-04-17T15:35:48.191171Z"
+      },
+      {
+        "source": "espn",
+        "source_type": "public_feed_fallback",
+        "title": "NBA playoffs: late-game heroics spark finals pressure debate",
+        "url": "https://www.espn.com/nba/",
+        "summary": "Public fallback headline used when ESPN RSS is unavailable in this environment.",
+        "team_tags": [],
+        "player_tags": [],
+        "topic_type": "championship",
+        "urgency": "low",
+        "trend_weight": 1.25,
+        "collected_at": "2026-04-17T15:35:48.191074Z"
+      }
+    ],
+    "x_watchlist": [
+      {
+        "source": "x_watchlist",
+        "source_type": "manual_watchlist",
+        "title": "Portal rumor watch: SEC quarterback expected to enter transfer portal",
+        "url": "https://x.com/CFBInsider/status/1000000000000000001",
+        "summary": "Multiple beat reporters are signaling movement after spring depth-chart shifts.",
+        "team_tags": [
+          "SEC",
+          "quarterback",
+          "transfer portal"
+        ],
+        "player_tags": [],
+        "topic_type": "transfer_portal",
+        "urgency": "high",
+        "trend_weight": 1.65,
+        "collected_at": "2026-04-17T15:35:48.199010Z"
+      },
+      {
+        "source": "x_watchlist",
+        "source_type": "manual_watchlist",
+        "title": "NBA Playoff overtime finish trends after viral game-winner clip",
+        "url": "https://x.com/HoopsPulse/status/1000000000000000003",
+        "summary": "Highlight packages are spiking and fan sentiment is heavily engaged.",
+        "team_tags": [
+          "NBA",
+          "playoffs",
+          "viral"
+        ],
+        "player_tags": [],
+        "topic_type": "championship",
+        "urgency": "medium",
+        "trend_weight": 1.35,
+        "collected_at": "2026-04-17T15:35:48.199042Z"
+      },
+      {
+        "source": "x_watchlist",
+        "source_type": "manual_watchlist",
+        "title": "Recruiting buzz: Five-star WR expected to announce commitment this weekend",
+        "url": "https://x.com/RecruitingIntel/status/1000000000000000002",
+        "summary": "National recruiting accounts are tracking final visits and NIL meetings.",
+        "team_tags": [
+          "recruiting",
+          "wide receiver",
+          "commitment"
+        ],
+        "player_tags": [],
+        "topic_type": "recruiting",
+        "urgency": "medium",
+        "trend_weight": 1.2,
+        "collected_at": "2026-04-17T15:35:48.199029Z"
+      }
+    ],
+    "on3": [
+      {
+        "source": "on3",
+        "source_type": "public_feed_fallback",
+        "title": "Transfer portal watch: veteran quarterback visiting two Power Four programs",
+        "url": "https://www.on3.com/transfer-portal/",
+        "summary": "Public fallback headline used when On3 feed is unavailable in this environment.",
+        "team_tags": [
+          "Power Four"
+        ],
+        "player_tags": [
+          "Power Four"
+        ],
+        "topic_type": "transfer_portal",
+        "urgency": "medium",
+        "trend_weight": 1.25,
+        "collected_at": "2026-04-17T15:35:48.198749Z"
+      },
+      {
+        "source": "on3",
+        "source_type": "public_feed_fallback",
+        "title": "Recruiting prediction machine flips toward SEC defensive line prospect",
+        "url": "https://www.on3.com/college/",
+        "summary": "Public fallback headline used when On3 feed is unavailable in this environment.",
+        "team_tags": [],
+        "player_tags": [],
+        "topic_type": "recruiting",
+        "urgency": "low",
+        "trend_weight": 1.1,
+        "collected_at": "2026-04-17T15:35:48.198716Z"
+      }
+    ],
+    "bleacher_report": [
+      {
+        "source": "bleacher_report",
+        "source_type": "public_feed_fallback",
+        "title": "March Madness transfer portal tracker heats up with star entries",
+        "url": "https://bleacherreport.com/college-football",
+        "summary": "Public fallback headline used when Bleacher Report RSS is unavailable in this environment.",
+        "team_tags": [
+          "March Madness"
+        ],
+        "player_tags": [
+          "March Madness"
+        ],
+        "topic_type": "transfer_portal",
+        "urgency": "low",
+        "trend_weight": 1.15,
+        "collected_at": "2026-04-17T15:35:48.195337Z"
+      },
+      {
+        "source": "bleacher_report",
+        "source_type": "public_feed_fallback",
+        "title": "NFL schedule release reactions are dominating sports conversation",
+        "url": "https://bleacherreport.com/nfl",
+        "summary": "Public fallback headline used when Bleacher Report RSS is unavailable in this environment.",
+        "team_tags": [],
+        "player_tags": [],
+        "topic_type": "general",
+        "urgency": "low",
+        "trend_weight": 0.9,
+        "collected_at": "2026-04-17T15:35:48.195302Z"
+      }
+    ]
+  },
+  "repeated_themes": [
+    {
+      "topic_type": "transfer_portal",
+      "count": 3
+    },
+    {
+      "topic_type": "championship",
+      "count": 2
+    },
+    {
+      "topic_type": "recruiting",
+      "count": 2
+    }
+  ],
+  "high_urgency_items": [
+    {
+      "source": "espn",
+      "source_type": "public_feed_fallback",
+      "title": "NFL draft buzz: teams weighing a surprise first-round trade",
+      "url": "https://www.espn.com/nfl/draft/",
+      "summary": "Public fallback headline used when ESPN RSS is unavailable in this environment.",
+      "team_tags": [],
+      "player_tags": [],
+      "topic_type": "breaking_news",
+      "urgency": "high",
+      "trend_weight": 1.9,
+      "collected_at": "2026-04-17T15:35:48.191171Z"
+    },
+    {
+      "source": "x_watchlist",
+      "source_type": "manual_watchlist",
+      "title": "Portal rumor watch: SEC quarterback expected to enter transfer portal",
+      "url": "https://x.com/CFBInsider/status/1000000000000000001",
+      "summary": "Multiple beat reporters are signaling movement after spring depth-chart shifts.",
+      "team_tags": [
+        "SEC",
+        "quarterback",
+        "transfer portal"
+      ],
+      "player_tags": [],
+      "topic_type": "transfer_portal",
+      "urgency": "high",
+      "trend_weight": 1.65,
+      "collected_at": "2026-04-17T15:35:48.199010Z"
+    }
+  ],
+  "likely_recruiting_or_portal_moves": [
+    {
+      "source": "bleacher_report",
+      "source_type": "public_feed_fallback",
+      "title": "March Madness transfer portal tracker heats up with star entries",
+      "url": "https://bleacherreport.com/college-football",
+      "summary": "Public fallback headline used when Bleacher Report RSS is unavailable in this environment.",
+      "team_tags": [
+        "March Madness"
+      ],
+      "player_tags": [
+        "March Madness"
+      ],
+      "topic_type": "transfer_portal",
+      "urgency": "low",
+      "trend_weight": 1.15,
+      "collected_at": "2026-04-17T15:35:48.195337Z"
+    },
+    {
+      "source": "on3",
+      "source_type": "public_feed_fallback",
+      "title": "Recruiting prediction machine flips toward SEC defensive line prospect",
+      "url": "https://www.on3.com/college/",
+      "summary": "Public fallback headline used when On3 feed is unavailable in this environment.",
+      "team_tags": [],
+      "player_tags": [],
+      "topic_type": "recruiting",
+      "urgency": "low",
+      "trend_weight": 1.1,
+      "collected_at": "2026-04-17T15:35:48.198716Z"
+    },
+    {
+      "source": "on3",
+      "source_type": "public_feed_fallback",
+      "title": "Transfer portal watch: veteran quarterback visiting two Power Four programs",
+      "url": "https://www.on3.com/transfer-portal/",
+      "summary": "Public fallback headline used when On3 feed is unavailable in this environment.",
+      "team_tags": [
+        "Power Four"
+      ],
+      "player_tags": [
+        "Power Four"
+      ],
+      "topic_type": "transfer_portal",
+      "urgency": "medium",
+      "trend_weight": 1.25,
+      "collected_at": "2026-04-17T15:35:48.198749Z"
+    },
+    {
+      "source": "x_watchlist",
+      "source_type": "manual_watchlist",
+      "title": "Portal rumor watch: SEC quarterback expected to enter transfer portal",
+      "url": "https://x.com/CFBInsider/status/1000000000000000001",
+      "summary": "Multiple beat reporters are signaling movement after spring depth-chart shifts.",
+      "team_tags": [
+        "SEC",
+        "quarterback",
+        "transfer portal"
+      ],
+      "player_tags": [],
+      "topic_type": "transfer_portal",
+      "urgency": "high",
+      "trend_weight": 1.65,
+      "collected_at": "2026-04-17T15:35:48.199010Z"
+    },
+    {
+      "source": "x_watchlist",
+      "source_type": "manual_watchlist",
+      "title": "Recruiting buzz: Five-star WR expected to announce commitment this weekend",
+      "url": "https://x.com/RecruitingIntel/status/1000000000000000002",
+      "summary": "National recruiting accounts are tracking final visits and NIL meetings.",
+      "team_tags": [
+        "recruiting",
+        "wide receiver",
+        "commitment"
+      ],
+      "player_tags": [],
+      "topic_type": "recruiting",
+      "urgency": "medium",
+      "trend_weight": 1.2,
+      "collected_at": "2026-04-17T15:35:48.199029Z"
+    }
+  ],
+  "likely_broad_reach_sports_moments": [
+    {
+      "source": "espn",
+      "source_type": "public_feed_fallback",
+      "title": "NFL draft buzz: teams weighing a surprise first-round trade",
+      "url": "https://www.espn.com/nfl/draft/",
+      "summary": "Public fallback headline used when ESPN RSS is unavailable in this environment.",
+      "team_tags": [],
+      "player_tags": [],
+      "topic_type": "breaking_news",
+      "urgency": "high",
+      "trend_weight": 1.9,
+      "collected_at": "2026-04-17T15:35:48.191171Z"
+    },
+    {
+      "source": "x_watchlist",
+      "source_type": "manual_watchlist",
+      "title": "NBA Playoff overtime finish trends after viral game-winner clip",
+      "url": "https://x.com/HoopsPulse/status/1000000000000000003",
+      "summary": "Highlight packages are spiking and fan sentiment is heavily engaged.",
+      "team_tags": [
+        "NBA",
+        "playoffs",
+        "viral"
+      ],
+      "player_tags": [],
+      "topic_type": "championship",
+      "urgency": "medium",
+      "trend_weight": 1.35,
+      "collected_at": "2026-04-17T15:35:48.199042Z"
+    },
+    {
+      "source": "espn",
+      "source_type": "public_feed_fallback",
+      "title": "NBA playoffs: late-game heroics spark finals pressure debate",
+      "url": "https://www.espn.com/nba/",
+      "summary": "Public fallback headline used when ESPN RSS is unavailable in this environment.",
+      "team_tags": [],
+      "player_tags": [],
+      "topic_type": "championship",
+      "urgency": "low",
+      "trend_weight": 1.25,
+      "collected_at": "2026-04-17T15:35:48.191074Z"
+    },
+    {
+      "source": "bleacher_report",
+      "source_type": "public_feed_fallback",
+      "title": "NFL schedule release reactions are dominating sports conversation",
+      "url": "https://bleacherreport.com/nfl",
+      "summary": "Public fallback headline used when Bleacher Report RSS is unavailable in this environment.",
+      "team_tags": [],
+      "player_tags": [],
+      "topic_type": "general",
+      "urgency": "low",
+      "trend_weight": 0.9,
+      "collected_at": "2026-04-17T15:35:48.195302Z"
+    }
+  ]
+}
