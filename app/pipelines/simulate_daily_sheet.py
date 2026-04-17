@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import logging
+import os
 import random
 from datetime import datetime, timezone
 from pathlib import Path
@@ -8,7 +10,35 @@ from pathlib import Path
 from app.core.models import ContentPack, TrendCandidate
 from app.core.scoring import ScoringEngine
 from app.core.source_weighting import apply_source_weighting, build_weighting_context
+from app.core.utils import normalize_topic
 from app.sources import manual_source
+from app.sources.live_trend_source import fetch_live_trends
+
+
+
+logger = logging.getLogger(__name__)
+
+
+def _as_bool(value: str | None, default: bool = False) -> bool:
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _merge_manual_and_live_trends(manual_trends: list[TrendCandidate], live_trends: list[TrendCandidate]) -> tuple[list[TrendCandidate], int]:
+    seen_topics = {normalize_topic(trend.topic) for trend in manual_trends}
+    merged = list(manual_trends)
+    ingested_live_count = 0
+
+    for trend in live_trends:
+        normalized_topic = normalize_topic(trend.topic)
+        if normalized_topic in seen_topics:
+            continue
+        seen_topics.add(normalized_topic)
+        merged.append(trend)
+        ingested_live_count += 1
+
+    return merged, ingested_live_count
 
 
 def _hooks_for_topic(topic: str) -> list[str]:
@@ -434,7 +464,20 @@ def _render_goal_dashboard_markdown(payload: dict) -> str:
 
 
 def simulate_daily_content_sheet(output_path: str = "data/exports/daily_content_sheet.md") -> dict:
-    trends = manual_source.fetch_trends()
+    manual_trends = manual_source.fetch_trends()
+
+    live_enabled = _as_bool(os.getenv("ENABLE_LIVE_TRENDS"), False)
+    live_trends = fetch_live_trends() if live_enabled else []
+    trends, live_ingested_count = _merge_manual_and_live_trends(manual_trends, live_trends)
+
+    logger.info(
+        "Trend pool prepared: manual=%s live_fetched=%s live_ingested=%s total=%s",
+        len(manual_trends),
+        len(live_trends),
+        live_ingested_count,
+        len(trends),
+    )
+
     scoring = ScoringEngine()
     weighting_context = build_weighting_context()
 
@@ -546,4 +589,9 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/daily_content_
         "goal_dashboard_md_output": str(goal_dashboard_md_path),
         "goal_dashboard_json_output": str(goal_dashboard_json_path),
         "run_seed": run_seed,
+        "manual_trends_count": len(manual_trends),
+        "live_trends_enabled": live_enabled,
+        "live_trends_fetched": len(live_trends),
+        "live_trends_ingested": live_ingested_count,
+        "total_trends_considered": len(trends),
     }
