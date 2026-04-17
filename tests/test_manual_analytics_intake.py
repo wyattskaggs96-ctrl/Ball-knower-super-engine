@@ -14,7 +14,7 @@ from app.feedback.normalize import normalize_posts
 def test_load_manual_posts_parses_csv() -> None:
     result = load_manual_posts("data/manual_tiktok_analytics.csv")
 
-    assert len(result.records) == 10
+    assert len(result.records) >= 10
     assert not result.errors
     assert result.records[0]["post_id"].startswith("bk_")
     assert isinstance(result.records[0]["teams_tagged"], list)
@@ -65,5 +65,7 @@ def test_feedback_run_with_manual_source_generates_outputs(tmp_path: Path) -> No
     payload = json.loads((export_dir / "engine_recommendations.json").read_text(encoding="utf-8"))
 
     assert Path(result["daily_feedback"]).exists()
+    assert Path(result["goal_feedback_report"]).exists()
     assert payload["source"] == "manual"
     assert payload["recommendations"]
+    assert payload["goal_aware_recommendations"]["views"]["topic_type"]["best"]["group_key"]

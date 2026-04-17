@@ -9,7 +9,7 @@ from app.feedback.ingest import load_posts_by_source
 from app.feedback.insights import generate_grouped_insights
 from app.feedback.metrics import add_post_metrics, build_grouped_performance
 from app.feedback.normalize import normalize_posts
-from app.feedback.recommend import generate_recommendations
+from app.feedback.recommend import build_goal_recommendation_groups, generate_recommendations
 from app.feedback.scheduler import schedule_stub
 
 
@@ -18,6 +18,23 @@ def _write_markdown(path: Path, title: str, lines: list[str]) -> str:
     content = "\n".join([f"# {title}", "", *[f"- {line}" for line in lines], ""])
     path.write_text(content, encoding="utf-8")
     return str(path)
+
+
+def _goal_feedback_lines(goal_groups: dict[str, dict[str, dict[str, dict]]]) -> list[str]:
+    lines: list[str] = []
+    label_map = {
+        "views": "views",
+        "followers": "follows",
+        "shares": "shares",
+    }
+    for goal in ("views", "followers", "shares"):
+        dims = goal_groups.get(goal, {})
+        goal_label = label_map[goal]
+        best_parts = [f"{name}='{item['best']['group_key']}'" for name, item in dims.items()]
+        weak_parts = [f"{name}='{item['weakest']['group_key']}'" for name, item in dims.items()]
+        lines.append(f"Best for {goal_label}: {', '.join(best_parts) if best_parts else 'n/a'}")
+        lines.append(f"Weakest for {goal_label}: {', '.join(weak_parts) if weak_parts else 'n/a'}")
+    return lines
 
 
 def import_manual_analytics(repo: Repository, file_path: str) -> dict[str, int | list[str]]:
@@ -152,6 +169,7 @@ def run_feedback_loop(repo: Repository, export_dir: str, source: str = "mock", m
     grouped_performance = build_grouped_performance(processed_posts)
     insights = generate_grouped_insights(grouped_performance)
     recommendations = generate_recommendations(grouped_performance)
+    goal_groups = build_goal_recommendation_groups(grouped_performance)
 
     run_id = _persist_run(
         repo,
@@ -169,6 +187,7 @@ def run_feedback_loop(repo: Repository, export_dir: str, source: str = "mock", m
         f"Scheduler interval: {schedule_stub()['interval']}",
         f"Source: {source}",
     ]
+    daily_lines.extend(_goal_feedback_lines(goal_groups))
     if errors:
         daily_lines.append(f"Skipped invalid manual rows: {len(errors)}")
     daily_feedback = _write_markdown(export_path / "daily_feedback.md", "Daily Feedback", daily_lines)
@@ -176,6 +195,7 @@ def run_feedback_loop(repo: Repository, export_dir: str, source: str = "mock", m
     weekly_lines = [
         "Top priorities for next cycle:",
         *[f"{rec['action']} {rec['focus']} for {rec['engine_target']}" for rec in recommendations[:8]],
+        *_goal_feedback_lines(goal_groups),
     ]
     if errors:
         weekly_lines.append(f"Manual intake validation errors: {len(errors)}")
@@ -190,16 +210,24 @@ def run_feedback_loop(repo: Repository, export_dir: str, source: str = "mock", m
                 "source": source,
                 "errors": errors,
                 "recommendations": recommendations,
+                "goal_aware_recommendations": goal_groups,
             },
             indent=2,
         ),
         encoding="utf-8",
     )
 
+    goal_feedback = _write_markdown(
+        export_path / "goal_feedback_report.md",
+        "Goal Feedback Report",
+        _goal_feedback_lines(goal_groups),
+    )
+
     return {
         "daily_feedback": daily_feedback,
         "weekly_review": str(weekly_review),
         "engine_recommendations": str(json_path),
+        "goal_feedback_report": goal_feedback,
     }
 
 

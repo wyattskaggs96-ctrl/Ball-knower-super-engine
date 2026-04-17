@@ -9,6 +9,30 @@
 - length_performance: prioritize 'short' (conversion 0.0002).
 - video_style_performance: prioritize 'gameplay_text' (conversion 0.0004).
 - video_style_performance: deprioritize 'analyst_clip' (conversion 0.0000).
+- topic_type: best for views is 'recruiting' (avg_views 11155.00).
+- topic_type: weakest for views is 'highlights' (avg_views 4153.25).
+- hook_type: best for views is 'news_reaction' (avg_views 10029.20).
+- hook_type: weakest for views is 'fan_callout' (avg_views 544.00).
+- video_style: best for views is 'screenshot_reaction' (avg_views 9629.00).
+- video_style: weakest for views is 'analyst_clip' (avg_views 1536.00).
+- topic_type: best for followers is 'recruiting' (avg_followers_gained 3.50).
+- topic_type: weakest for followers is 'highlights' (avg_followers_gained 1.00).
+- hook_type: best for followers is 'news_reaction' (avg_followers_gained 2.20).
+- hook_type: weakest for followers is 'fan_callout' (avg_followers_gained 0.00).
+- video_style: best for followers is 'screenshot_reaction' (avg_followers_gained 2.33).
+- video_style: weakest for followers is 'analyst_clip' (avg_followers_gained 0.00).
+- topic_type: best for shares is 'transfer_portal' (avg_shares 26.50).
+- topic_type: weakest for shares is 'mlb' (avg_shares 9.00).
+- hook_type: best for shares is 'news_reaction' (avg_shares 23.60).
+- hook_type: weakest for shares is 'fan_callout' (avg_shares 0.00).
+- video_style: best for shares is 'screenshot_reaction' (avg_shares 33.00).
+- video_style: weakest for shares is 'analyst_clip' (avg_shares 0.00).
 - Run ID: 1
 - Scheduler interval: 2:00:00
 - Source: manual
+- Best for views: topic_type='recruiting', hook_type='news_reaction', video_style='screenshot_reaction'
+- Weakest for views: topic_type='highlights', hook_type='fan_callout', video_style='analyst_clip'
+- Best for follows: topic_type='recruiting', hook_type='news_reaction', video_style='screenshot_reaction'
+- Weakest for follows: topic_type='highlights', hook_type='fan_callout', video_style='analyst_clip'
+- Best for shares: topic_type='transfer_portal', hook_type='news_reaction', video_style='screenshot_reaction'
+- Weakest for shares: topic_type='mlb', hook_type='fan_callout', video_style='analyst_clip'

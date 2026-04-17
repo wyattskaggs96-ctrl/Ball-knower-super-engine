@@ -47,6 +47,8 @@ def build_grouped_performance(posts: list[dict]) -> dict[str, list[dict]]:
                     "group_key": key,
                     "posts": len(rows),
                     "avg_views": mean(r["views"] for r in rows),
+                    "avg_followers_gained": mean(r["followers_gained"] for r in rows),
+                    "avg_shares": mean(r["shares"] for r in rows),
                     "avg_follower_conversion_rate": mean(r["follower_conversion_rate"] for r in rows),
                     "avg_engagement_rate": mean(r["engagement_rate"] for r in rows),
                     "avg_completion_rate": mean(r["completion_rate"] for r in rows),
