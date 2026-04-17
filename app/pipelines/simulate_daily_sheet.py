@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import random
+from datetime import datetime, timezone
 from pathlib import Path
 
 from app.core.models import ContentPack, TrendCandidate
@@ -21,12 +23,14 @@ def _hooks_for_topic(topic: str) -> list[str]:
     ]
 
 
-def _pick_hook(hooks: list[str], postability_score: float) -> str:
+def _pick_hook(hooks: list[str], postability_score: float, rng: random.Random) -> str:
     if postability_score >= 84:
-        return hooks[0]
-    if postability_score >= 78:
-        return hooks[2]
-    return hooks[4]
+        pool = hooks[:3]
+    elif postability_score >= 78:
+        pool = hooks[1:4]
+    else:
+        pool = hooks[2:5]
+    return rng.choice(pool)
 
 
 def _score_reasoning(topic: TrendCandidate, score_breakdown: dict) -> str:
@@ -48,7 +52,9 @@ def _postability_components(topic: TrendCandidate, score_breakdown: dict) -> dic
     comment_potential = 93.0 if any(
         k in lower_topic for k in ["debate", "overrated", "underrated", "controvers", "trade", "portal", "decommit"]
     ) else 80.0
-    speed_to_post = 90.0 if any(k in topic.sport for k in ["nba", "nfl", "college basketball", "recruiting drama"]) else 76.0
+    speed_to_post = 90.0 if any(
+        k in topic.sport for k in ["nba", "nfl", "college basketball", "recruiting drama"]
+    ) else 76.0
 
     return {
         "audience_size": audience_size,
@@ -275,6 +281,8 @@ def _render_daily_post_ready(rows: list[dict]) -> str:
         sections.extend(section)
 
     return "\n".join(sections).rstrip() + "\n"
+
+
 def _render_top_5_post_now(rows: list[dict]) -> str:
     lines = ["# Top 5 Post Now", "", "Fast picks to post immediately:", ""]
     for idx, row in enumerate(rows[:5], start=1):
@@ -425,25 +433,35 @@ def _render_goal_dashboard_markdown(payload: dict) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
-def simulate_daily_content_sheet(output_path: str = "data/exports/example_output.md") -> dict:
+def simulate_daily_content_sheet(output_path: str = "data/exports/daily_content_sheet.md") -> dict:
     trends = manual_source.fetch_trends()
     scoring = ScoringEngine()
     weighting_context = build_weighting_context()
+
+    run_seed = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
+    rng = random.Random(run_seed)
 
     ranked: list[tuple[TrendCandidate, dict, dict, float, dict, float]] = []
     for trend in trends:
         scored = scoring.score(trend)
         weighted = apply_source_weighting(trend, scored, weighting_context)
         postability, components = _postability_score(trend, scored)
-        final_rank_score = round(weighted["weighted_total_score"] * 0.6 + postability * 0.4, 2)
+
+        tie_breaker = rng.uniform(-2.5, 2.5)
+        final_rank_score = round(weighted["weighted_total_score"] * 0.6 + postability * 0.4 + tie_breaker, 2)
+
         ranked.append((trend, scored, weighted, postability, components, final_rank_score))
 
     ranked.sort(key=lambda item: item[5], reverse=True)
 
+    top_pool = ranked[:15] if len(ranked) >= 15 else ranked
+    rng.shuffle(top_pool)
+    selected_ranked = sorted(top_pool[:10], key=lambda item: item[5], reverse=True)
+
     all_rows: list[dict] = []
-    for idx, (trend, scored, weighted, postability, components, final_rank_score) in enumerate(ranked, start=1):
+    for idx, (trend, scored, weighted, postability, components, final_rank_score) in enumerate(selected_ranked, start=1):
         hooks = _hooks_for_topic(trend.topic)
-        selected_hook = _pick_hook(hooks, postability)
+        selected_hook = _pick_hook(hooks, postability, rng)
         content_pack = _build_pack(trend, selected_hook, idx)
 
         all_rows.append(
@@ -527,4 +545,5 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
         "top_3_shares_output": str(top_shares_path),
         "goal_dashboard_md_output": str(goal_dashboard_md_path),
         "goal_dashboard_json_output": str(goal_dashboard_json_path),
+        "run_seed": run_seed,
     }
