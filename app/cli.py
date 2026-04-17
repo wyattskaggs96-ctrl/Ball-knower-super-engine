@@ -9,6 +9,7 @@ from app.agents.script_generator import ScriptGeneratorAgent
 from app.agents.trend_scout import TrendScoutAgent
 from app.core.config import Settings
 from app.core.llm import LLMClient
+from app.core.validation import validate_all_labels, validate_manual_analytics_labels, validate_private_intel_labels
 from app.db.database import get_connection, init_db
 from app.db.repository import Repository
 from app.feedback.engine_integration import feedback_report, import_manual_analytics, run_feedback_loop
@@ -69,6 +70,10 @@ def main() -> None:
     feedback_run_p.add_argument("--source", choices=["mock", "manual", "all"], default="mock")
     feedback_run_p.add_argument("--file", default="data/manual_tiktok_analytics.csv")
     sub.add_parser("feedback-report", help="Read latest generated weekly feedback report")
+    validate_p = sub.add_parser("validate-labels", help="Validate manual analytics and private intel labels")
+    validate_p.add_argument("--scope", choices=["all", "manual", "private"], default="all")
+    validate_p.add_argument("--manual-file", default="data/manual_tiktok_analytics.csv")
+    validate_p.add_argument("--private-file", default="data/private_intel.json")
 
     export_p = sub.add_parser("export", help="Export content packs")
     export_p.add_argument("--format", choices=["json", "markdown", "both"], default="both")
@@ -109,6 +114,21 @@ def main() -> None:
         print(result)
     elif args.command == "feedback-report":
         print(feedback_report(settings.export_dir))
+    elif args.command == "validate-labels":
+        if args.scope == "all":
+            result = validate_all_labels(args.manual_file, args.private_file)
+        elif args.scope == "manual":
+            result = {"manual": validate_manual_analytics_labels(args.manual_file), "private": []}
+        else:
+            result = {"manual": [], "private": validate_private_intel_labels(args.private_file)}
+
+        if result["manual"] or result["private"]:
+            print("Label validation found issues:")
+            for message in result["manual"] + result["private"]:
+                print(f"- {message}")
+            raise SystemExit(1)
+
+        print("Label validation passed: all checked labels are valid.")
     elif args.command == "export":
         ids = parse_id_list(args.ids)
         if args.format in {"json", "both"}:

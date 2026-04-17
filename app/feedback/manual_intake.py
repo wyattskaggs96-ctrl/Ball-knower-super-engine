@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from app.core.validation import validate_manual_analytics_labels
+
 DEFAULT_MANUAL_CSV_PATH = Path("data/manual_tiktok_analytics.csv")
 OPTIONAL_NUMERIC_FIELDS = {
     "likes",
@@ -59,9 +61,9 @@ def load_manual_posts(path: str | Path = DEFAULT_MANUAL_CSV_PATH) -> ManualImpor
     if not target.exists():
         raise FileNotFoundError(f"Manual analytics file not found: {target}")
 
+    errors: list[str] = validate_manual_analytics_labels(target)
     rows = _read_records(target)
     normalized: list[dict[str, Any]] = []
-    errors: list[str] = []
 
     for idx, row in enumerate(rows, start=2):
         missing = sorted(name for name in REQUIRED_FIELDS if not str(row.get(name, "")).strip())

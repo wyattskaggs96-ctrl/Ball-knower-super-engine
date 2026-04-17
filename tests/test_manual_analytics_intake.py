@@ -24,7 +24,7 @@ def test_load_manual_posts_handles_optional_fields(tmp_path: Path) -> None:
     sample = tmp_path / "manual.csv"
     sample.write_text(
         "post_id,post_timestamp,topic_type,hook_type,video_style,length_seconds,views\n"
-        "row_1,2026-04-15T13:12:00Z,analysis,stat_shock,facecam_breakdown,30,1000\n",
+        "row_1,2026-04-15T13:12:00Z,nba,stat_shock,facecam_breakdown,30,1000\n",
         encoding="utf-8",
     )
 
