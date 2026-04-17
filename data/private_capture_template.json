@@ -1,0 +1,13 @@
+{
+  "captured_at": "2026-04-17T00:00:00Z",
+  "source": "On3 premium board",
+  "page_title": "Example premium intel title",
+  "url": "https://example.com/premium-story",
+  "selected_text": "Paste the exact selected text captured from the page.",
+  "quick_summary": "Optional: your one-line synthesis of why this matters.",
+  "team_tags": ["Georgia"],
+  "player_tags": ["Jaden Marshall"],
+  "urgency": "medium",
+  "confidence": "high",
+  "note_type": "recruiting"
+}
