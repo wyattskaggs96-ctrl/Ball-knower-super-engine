@@ -1,0 +1,46 @@
+[
+  {
+    "source": "On3 premium board",
+    "article_url": "https://www.on3.com/teams/georgia-bulldogs/news/insider-note-qb-room-spring",
+    "title": "Georgia staff expected to push for 2027 QB reclassification",
+    "summary": "Two On3 staff notes and one paid board thread indicate Georgia is evaluating an accelerated timeline for a 2027 QB target before summer camp visits.",
+    "team_tags": ["Georgia"],
+    "player_tags": ["Jaden Marshall"],
+    "urgency": "medium",
+    "confidence": "high",
+    "note_type": "recruiting"
+  },
+  {
+    "source": "SEC insider message board digest",
+    "article_url": "https://example.com/private/sec-board/portal-watch",
+    "title": "Starting SEC cornerback linked to post-spring portal entry",
+    "summary": "Multiple subscriber-only board updates suggest a first-team corner may enter after the spring window if NIL negotiations stall.",
+    "team_tags": ["Ole Miss"],
+    "player_tags": ["Darius Carter"],
+    "urgency": "high",
+    "confidence": 0.78,
+    "note_type": "transfer_portal"
+  },
+  {
+    "source": "Paid beat reporter Slack",
+    "article_url": "https://example.com/private/beat/injury-update",
+    "title": "Veteran guard trending doubtful for opener after setback",
+    "summary": "Private beat updates point to a likely minutes restriction in week one after an undisclosed lower-body setback.",
+    "team_tags": ["Lakers"],
+    "player_tags": ["Austin Reaves"],
+    "urgency": "high",
+    "confidence": "medium",
+    "note_type": "injury"
+  },
+  {
+    "source": "National recruiting discord premium room",
+    "article_url": "https://example.com/private/recruiting/flip-watch",
+    "title": "Top-150 WR flip chatter rising ahead of unofficial visit",
+    "summary": "Insider room notes show two program staffers expecting momentum swing before the next visit weekend, with social hints already surfacing.",
+    "team_tags": ["USC", "Oregon"],
+    "player_tags": ["Khalil Benton"],
+    "urgency": "medium",
+    "confidence": "medium",
+    "note_type": "rumor"
+  }
+]
