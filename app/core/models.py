@@ -26,6 +26,18 @@ class TrendScore(BaseModel):
     controversy: float
     recognition: float
     ease_of_execution: float
+    clarity_1s_score: float = 0.0
+    star_power_score: float = 0.0
+    search_heat_score: float = 0.0
+    emotion_score: float = 0.0
+    pov_strength_score: float = 0.0
+    fan_identity_score: float = 0.0
+    rivalry_score: float = 0.0
+    sendability_score: float = 0.0
+    view_score: float = 0.0
+    follow_score: float = 0.0
+    share_score: float = 0.0
+    primary_goal: str = "views"
     total_score: float
     reasoning: str = ""
     recommended: bool = False

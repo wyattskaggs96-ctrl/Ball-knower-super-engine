@@ -48,8 +48,10 @@ class Repository:
             """
             INSERT INTO trend_scores
             (trend_candidate_id, recency, audience_fit, virality, controversy,
-             recognition, ease_of_execution, total_score, reasoning, recommended, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+             recognition, ease_of_execution, clarity_1s_score, star_power_score, search_heat_score, emotion_score,
+             pov_strength_score, fan_identity_score, rivalry_score, sendability_score, view_score, follow_score,
+             share_score, primary_goal, total_score, reasoning, recommended, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 score.trend_candidate_id,
@@ -59,6 +61,18 @@ class Repository:
                 score.controversy,
                 score.recognition,
                 score.ease_of_execution,
+                score.clarity_1s_score,
+                score.star_power_score,
+                score.search_heat_score,
+                score.emotion_score,
+                score.pov_strength_score,
+                score.fan_identity_score,
+                score.rivalry_score,
+                score.sendability_score,
+                score.view_score,
+                score.follow_score,
+                score.share_score,
+                score.primary_goal,
                 score.total_score,
                 score.reasoning,
                 int(score.recommended),
