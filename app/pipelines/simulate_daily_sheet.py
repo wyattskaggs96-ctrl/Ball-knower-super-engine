@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 import logging
-import os
 import random
 from datetime import datetime, timezone
 from pathlib import Path
@@ -10,35 +9,16 @@ from pathlib import Path
 from app.core.models import ContentPack, TrendCandidate
 from app.core.scoring import ScoringEngine
 from app.core.source_weighting import apply_source_weighting, build_weighting_context
-from app.core.utils import normalize_topic
 from app.sources import manual_source
+from app.sources.google_trends_source import fetch_google_trends
 from app.sources.live_trend_source import fetch_live_trends
+from app.sources.odds_trend_source import fetch_odds_trends
+from app.sources.trend_source_framework import TrendSourceDefinition, collect_trends
+from app.sources.youtube_trend_source import fetch_youtube_trends
 
 
 
 logger = logging.getLogger(__name__)
-
-
-def _as_bool(value: str | None, default: bool = False) -> bool:
-    if value is None:
-        return default
-    return value.strip().lower() in {"1", "true", "yes", "on"}
-
-
-def _merge_manual_and_live_trends(manual_trends: list[TrendCandidate], live_trends: list[TrendCandidate]) -> tuple[list[TrendCandidate], int]:
-    seen_topics = {normalize_topic(trend.topic) for trend in manual_trends}
-    merged = list(manual_trends)
-    ingested_live_count = 0
-
-    for trend in live_trends:
-        normalized_topic = normalize_topic(trend.topic)
-        if normalized_topic in seen_topics:
-            continue
-        seen_topics.add(normalized_topic)
-        merged.append(trend)
-        ingested_live_count += 1
-
-    return merged, ingested_live_count
 
 
 def _hooks_for_topic(topic: str) -> list[str]:
@@ -202,6 +182,7 @@ def _render_markdown(rows: list[dict]) -> str:
         lines.extend(
             [
                 f"## {i}. {row['topic']}",
+                f"- **Source:** {row.get('source_name', 'unknown')} ({row.get('source_type', 'unknown')}, priority={row.get('source_priority', 'n/a')})",
                 f"- **Postability score:** {row['postability_score']} (audience={row['postability_components']['audience_size']}, clips={row['postability_components']['clip_availability']}, controversy={row['postability_components']['controversy']}, comments={row['postability_components']['comment_potential']}, speed={row['postability_components']['speed_to_post']})",
                 f"- **Score:** {row['score']}",
                 f"- **Score reasoning:** {row['score_reasoning']}",
@@ -464,17 +445,51 @@ def _render_goal_dashboard_markdown(payload: dict) -> str:
 
 
 def simulate_daily_content_sheet(output_path: str = "data/exports/daily_content_sheet.md") -> dict:
-    manual_trends = manual_source.fetch_trends()
-
-    live_enabled = _as_bool(os.getenv("ENABLE_LIVE_TRENDS"), False)
-    live_trends = fetch_live_trends() if live_enabled else []
-    trends, live_ingested_count = _merge_manual_and_live_trends(manual_trends, live_trends)
+    source_definitions = [
+        TrendSourceDefinition(
+            source_name="manual_curated",
+            source_type="manual",
+            source_priority=1,
+            fetcher=manual_source.fetch_trends,
+        ),
+        TrendSourceDefinition(
+            source_name="newsapi_live",
+            source_type="news",
+            source_priority=2,
+            fetcher=fetch_live_trends,
+            enabled_env_var="ENABLE_LIVE_TRENDS",
+        ),
+        TrendSourceDefinition(
+            source_name="youtube_data_api",
+            source_type="video",
+            source_priority=3,
+            fetcher=fetch_youtube_trends,
+            enabled_env_var="ENABLE_YOUTUBE_TRENDS",
+        ),
+        TrendSourceDefinition(
+            source_name="odds_api",
+            source_type="betting",
+            source_priority=4,
+            fetcher=fetch_odds_trends,
+            enabled_env_var="ENABLE_ODDS_TRENDS",
+        ),
+        TrendSourceDefinition(
+            source_name="google_trends",
+            source_type="search_interest",
+            source_priority=5,
+            fetcher=fetch_google_trends,
+            enabled_env_var="ENABLE_GOOGLE_TRENDS",
+        ),
+    ]
+    trends, source_contributions = collect_trends(source_definitions)
+    manual_stats = source_contributions.get("manual_curated", {})
+    live_stats = source_contributions.get("newsapi_live", {})
 
     logger.info(
         "Trend pool prepared: manual=%s live_fetched=%s live_ingested=%s total=%s",
-        len(manual_trends),
-        len(live_trends),
-        live_ingested_count,
+        manual_stats.get("ingested", 0),
+        live_stats.get("fetched", 0),
+        live_stats.get("ingested", 0),
         len(trends),
     )
 
@@ -511,6 +526,10 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/daily_content_
             {
                 "topic": trend.topic,
                 "sport": trend.sport,
+                "source_name": trend.source_name or trend.source,
+                "source_type": trend.source_type,
+                "source_priority": trend.source_priority,
+                "source_timestamp": trend.source_timestamp.isoformat() if trend.source_timestamp else None,
                 "score": scored["total_score"],
                 "postability_score": postability,
                 "view_score": scored["view_score"],
@@ -589,9 +608,10 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/daily_content_
         "goal_dashboard_md_output": str(goal_dashboard_md_path),
         "goal_dashboard_json_output": str(goal_dashboard_json_path),
         "run_seed": run_seed,
-        "manual_trends_count": len(manual_trends),
-        "live_trends_enabled": live_enabled,
-        "live_trends_fetched": len(live_trends),
-        "live_trends_ingested": live_ingested_count,
+        "manual_trends_count": int(manual_stats.get("ingested", 0)),
+        "live_trends_enabled": bool(live_stats.get("enabled", False)),
+        "live_trends_fetched": int(live_stats.get("fetched", 0)),
+        "live_trends_ingested": int(live_stats.get("ingested", 0)),
+        "source_contributions": source_contributions,
         "total_trends_considered": len(trends),
     }
