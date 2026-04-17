@@ -21,12 +21,14 @@ def _best_window(engine_recommendations_path: Path) -> str:
     for rec in payload.get("recommendations", []):
         if rec.get("engine_target") == "posting recommendations" and rec.get("action") == "increase":
             return str(rec.get("focus", "late_night"))
+
     return "late_night"
 
 
 def _card_for_goal(rows: list[dict], goal: str, metric_key: str, best_window: str) -> dict:
     best = max(rows, key=lambda row: row.get(metric_key, 0.0))
     caption = best["content_pack"]["caption"]
+
     return {
         "goal": goal,
         "topic": best["topic"],
@@ -46,11 +48,14 @@ def build_mobile_command_center_export(
     source_rows_path: str = "data/exports/daily_content_sheet.json",
     engine_recommendations_path: str = "data/exports/engine_recommendations.json",
 ) -> dict:
+
     rows_path = Path(source_rows_path)
+
     if not rows_path.exists():
         raise FileNotFoundError(f"Missing source rows JSON: {rows_path}")
 
     rows = json.loads(rows_path.read_text(encoding="utf-8"))
+
     if not rows:
         raise ValueError(f"No rows found in source rows JSON: {rows_path}")
 
@@ -60,15 +65,16 @@ def build_mobile_command_center_export(
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "run_source": str(rows_path),
         "recommendations": {
-            "views": _card_for_goal(rows, goal="views", metric_key="view_score", best_window=window),
-            "followers": _card_for_goal(rows, goal="followers", metric_key="follow_score", best_window=window),
-            "shares": _card_for_goal(rows, goal="shares", metric_key="share_score", best_window=window),
+            "views": _card_for_goal(rows, "views", "view_score", window),
+            "followers": _card_for_goal(rows, "followers", "follow_score", window),
+            "shares": _card_for_goal(rows, "shares", "share_score", window),
         },
     }
 
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+
     return {
         "mobile_command_center_output": str(out),
         "generated_at": payload["generated_at"],
@@ -83,6 +89,7 @@ def refresh_mobile_command_center(run_engine: bool = True) -> dict:
         refreshed_paths = simulate_daily_content_sheet()
 
     export_result = build_mobile_command_center_export()
+
     return {
         "refreshed": run_engine,
         "pipeline": refreshed_paths,
