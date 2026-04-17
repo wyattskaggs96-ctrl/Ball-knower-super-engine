@@ -17,8 +17,10 @@ else:
     _FLASK_IMPORT_ERROR = None
 
 
-PAGE_PATH = Path("data/exports/mobile_command_center.html")
-DATA_PATH = Path("data/exports/mobile_command_center.json")
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+PAGE_PATH = BASE_DIR / "data/exports/mobile_command_center.html"
+DATA_PATH = BASE_DIR / "data/exports/mobile_command_center.json"
 app = Flask(__name__) if Flask else None
 
 
