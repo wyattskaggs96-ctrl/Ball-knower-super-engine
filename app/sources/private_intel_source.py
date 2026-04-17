@@ -6,24 +6,14 @@ from typing import Any
 
 from pydantic import BaseModel, Field, field_validator
 
+from app.core.label_config import PRIVATE_INTEL_LABELS
 from app.sources.trend_item import NormalizedTrendItem
 from app.sources.trend_normalizer import compute_trend_weight
 
 DEFAULT_PRIVATE_INTEL_PATH = Path(__file__).resolve().parents[2] / "data" / "private_intel.json"
-
-NOTE_TYPES = {
-    "recruiting",
-    "transfer_portal",
-    "injury",
-    "coaching",
-    "schedule",
-    "rumor",
-    "breaking_news",
-    "matchup",
-    "other",
-}
-URGENCY_LEVELS = {"low", "medium", "high"}
-CONFIDENCE_LEVELS = {"low", "medium", "high"}
+NOTE_TYPES = PRIVATE_INTEL_LABELS["note_type"]
+URGENCY_LEVELS = PRIVATE_INTEL_LABELS["urgency"]
+CONFIDENCE_LEVELS = PRIVATE_INTEL_LABELS["confidence"]
 CONFIDENCE_TO_SCORE = {"low": 0.4, "medium": 0.7, "high": 0.9}
 
 
