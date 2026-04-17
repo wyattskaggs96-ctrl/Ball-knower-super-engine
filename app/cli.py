@@ -13,6 +13,8 @@ from app.core.validation import validate_all_labels, validate_manual_analytics_l
 from app.db.database import get_connection, init_db
 from app.db.repository import Repository
 from app.feedback.engine_integration import feedback_report, import_manual_analytics, run_feedback_loop
+from app.mobile_server import serve_mobile_command_center
+from app.pipelines.mobile_command_center import refresh_mobile_command_center
 from app.pipelines.run_daily_pipeline import run_daily_pipeline
 from app.pipelines.simulate_daily_sheet import simulate_daily_content_sheet
 from app.services.content_service import ContentService
@@ -63,6 +65,10 @@ def main() -> None:
 
     sub.add_parser("run-daily", help="Run full daily pipeline")
     sub.add_parser("simulate-daily", help="Simulate and export a creator-ready daily content sheet")
+    sub.add_parser("mobile-refresh", help="Refresh mobile command center export from latest engine outputs")
+    serve_mobile = sub.add_parser("mobile-serve", help="Serve mobile command center web page locally")
+    serve_mobile.add_argument("--host", default="0.0.0.0")
+    serve_mobile.add_argument("--port", type=int, default=8000)
     import_p = sub.add_parser("feedback-import", help="Import manual TikTok analytics data")
     import_p.add_argument("--file", default="data/manual_tiktok_analytics.csv")
 
@@ -106,6 +112,11 @@ def main() -> None:
     elif args.command == "simulate-daily":
         result = simulate_daily_content_sheet()
         print(result)
+    elif args.command == "mobile-refresh":
+        result = refresh_mobile_command_center(run_engine=True)
+        print(result)
+    elif args.command == "mobile-serve":
+        serve_mobile_command_center(host=args.host, port=args.port)
     elif args.command == "feedback-import":
         result = import_manual_analytics(repo, args.file)
         print(result)
