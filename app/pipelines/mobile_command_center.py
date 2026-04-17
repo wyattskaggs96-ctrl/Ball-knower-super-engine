@@ -25,8 +25,21 @@ def _best_window(engine_recommendations_path: Path) -> str:
     return "late_night"
 
 
-def _card_for_goal(rows: list[dict], goal: str, metric_key: str, best_window: str) -> dict:
-    best = max(rows, key=lambda row: row.get(metric_key, 0.0))
+def _card_for_goal(
+    rows: list[dict],
+    goal: str,
+    weighted_metric_key: str,
+    fallback_metric_key: str,
+    best_window: str,
+) -> dict:
+    def score_for_row(row: dict) -> float:
+        if weighted_metric_key in row:
+            return row.get(weighted_metric_key, 0.0)
+        return row.get(fallback_metric_key, 0.0)
+
+    best = max(rows, key=score_for_row)
+    selected_metric = weighted_metric_key if weighted_metric_key in best else fallback_metric_key
+    selected_score = best.get(selected_metric, 0.0)
     caption = best["content_pack"]["caption"]
 
     return {
@@ -36,7 +49,7 @@ def _card_for_goal(rows: list[dict], goal: str, metric_key: str, best_window: st
         "caption": caption,
         "hashtags": _extract_hashtags(caption),
         "why_selected": (
-            f"Highest {goal} score ({best.get(metric_key, 0.0)}) "
+            f"Highest {goal} using {selected_metric} ({selected_score}) "
             f"with strong postability ({best.get('postability_score', 0.0)})."
         ),
         "best_window": best_window,
@@ -65,9 +78,9 @@ def build_mobile_command_center_export(
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "run_source": str(rows_path),
         "recommendations": {
-            "views": _card_for_goal(rows, "views", "view_score", window),
-            "followers": _card_for_goal(rows, "followers", "follow_score", window),
-            "shares": _card_for_goal(rows, "shares", "share_score", window),
+            "views": _card_for_goal(rows, "views", "weighted_view_score", "view_score", window),
+            "followers": _card_for_goal(rows, "followers", "weighted_follow_score", "follow_score", window),
+            "shares": _card_for_goal(rows, "shares", "weighted_share_score", "share_score", window),
         },
     }
 
