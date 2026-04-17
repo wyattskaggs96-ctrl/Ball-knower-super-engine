@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-04-17T18:45:41.998273+00:00",
+  "run_source": "data/exports/example_output.json",
+  "recommendations": {
+    "views": {
+      "goal": "views",
+      "topic": "Lakers are one trade away from contention or one trade from disaster",
+      "hook": "Direct challenge: defend lakers are one trade away from contention or one trade from disaster without lazy narratives.",
+      "caption": "Direct challenge: defend lakers are one trade away from contention or one trade from disaster without lazy narratives. If this offends you, good. Most sports takes collapse the second they're challenged. #ballknower #sportstok #debate",
+      "hashtags": "#ballknower #sportstok #debate",
+      "why_selected": "Highest views score (73.15) with strong postability (89.1).",
+      "best_window": "late_night"
+    },
+    "followers": {
+      "goal": "followers",
+      "topic": "UConn culture wins again or portal luck?",
+      "hook": "You're wrong if you think uconn culture wins again or portal luck is only about talent.",
+      "caption": "You're wrong if you think uconn culture wins again or portal luck is only about talent. If this offends you, good. Most sports takes collapse the second they're challenged. #ballknower #sportstok #debate",
+      "hashtags": "#ballknower #sportstok #debate",
+      "why_selected": "Highest followers score (69.1) with strong postability (79.6).",
+      "best_window": "late_night"
+    },
+    "shares": {
+      "goal": "shares",
+      "topic": "Cowboys draft strategy feels like d\u00e9j\u00e0 vu and fans are panicking",
+      "hook": "Direct challenge: defend cowboys draft strategy feels like d\u00e9j\u00e0 vu and fans are panicking without lazy narratives.",
+      "caption": "Direct challenge: defend cowboys draft strategy feels like d\u00e9j\u00e0 vu and fans are panicking without lazy narratives. If this offends you, good. Most sports takes collapse the second they're challenged. #ballknower #sportstok #debate",
+      "hashtags": "#ballknower #sportstok #debate",
+      "why_selected": "Highest shares score (60.11) with strong postability (86.5).",
+      "best_window": "late_night"
+    }
+  }
+}
