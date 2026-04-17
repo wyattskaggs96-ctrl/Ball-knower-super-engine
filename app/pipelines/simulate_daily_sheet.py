@@ -283,6 +283,50 @@ def _render_top_5_post_now(rows: list[dict]) -> str:
         lines.append("   - CTA: [draft CTA]")
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
+
+
+def _render_goal_top_3(rows: list[dict], score_key: str, title: str) -> str:
+    goal_map = {"view_score": "views", "follow_score": "followers", "share_score": "shares"}
+    target_goal = goal_map[score_key]
+    primary_first = [row for row in rows if row["primary_goal"] == target_goal]
+    fallback = [row for row in rows if row["primary_goal"] != target_goal]
+    ranked = sorted(primary_first, key=lambda row: row[score_key], reverse=True)
+    if len(ranked) < 3:
+        ranked.extend(sorted(fallback, key=lambda row: row[score_key], reverse=True))
+    ranked = ranked[:3]
+
+    hook_templates = {
+        "views": [
+            "This one is exploding right now — quick reset:",
+            "If you only watch one sports topic today, make it this:",
+            "Fast headline breakdown before everyone runs with bad context:",
+        ],
+        "followers": [
+            "My read on this is simple:",
+            "What this actually means for next month:",
+            "Ranking this take with full context:",
+        ],
+        "shares": [
+            "Send this to the friend still defending this:",
+            "This is pure disrespect and I brought receipts:",
+            "Group-chat argument fuel in 15 seconds:",
+        ],
+    }
+
+    reason_templates = {
+        "views": "Broad reach + clear setup + current search heat.",
+        "followers": "Strong POV + explanation depth + repeatable Ball Knower angle.",
+        "shares": "Rivalry/disrespect energy + high sendability + argument fuel.",
+    }
+
+    lines = [title, "", "Top creator-ready topics by goal score:", ""]
+    for idx, row in enumerate(ranked, start=1):
+        lines.append(f"{idx}. {row['topic']} ({score_key.replace('_', ' ').title()}: {row[score_key]}, Postability: {row['postability_score']})")
+        lines.append(f"   - Primary goal: {row['primary_goal']}")
+        lines.append(f"   - Suggested hook: {hook_templates[target_goal][idx - 1]} {row['topic']}.")
+        lines.append(f"   - Why this fits: {reason_templates[target_goal]}")
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
 def simulate_daily_content_sheet(output_path: str = "data/exports/example_output.md") -> dict:
     trends = manual_source.fetch_trends()
     scoring = ScoringEngine()
@@ -309,6 +353,10 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
                 "sport": trend.sport,
                 "score": scored["total_score"],
                 "postability_score": postability,
+                "view_score": scored["view_score"],
+                "follow_score": scored["follow_score"],
+                "share_score": scored["share_score"],
+                "primary_goal": scored["primary_goal"],
                 "postability_components": components,
                 "final_rank_score": final_rank_score,
                 "score_reasoning": _score_reasoning(trend, scored),
@@ -335,6 +383,15 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
     top_5_path = out_path.parent / "top_5_post_now.md"
     top_5_path.write_text(_render_top_5_post_now(rows), encoding="utf-8")
 
+    top_views_path = out_path.parent / "top_3_views.md"
+    top_views_path.write_text(_render_goal_top_3(rows, "view_score", "# Top 3 Topics for Views"), encoding="utf-8")
+
+    top_follows_path = out_path.parent / "top_3_follows.md"
+    top_follows_path.write_text(_render_goal_top_3(rows, "follow_score", "# Top 3 Topics for Followers"), encoding="utf-8")
+
+    top_shares_path = out_path.parent / "top_3_shares.md"
+    top_shares_path.write_text(_render_goal_top_3(rows, "share_score", "# Top 3 Topics for Shares"), encoding="utf-8")
+
     return {
         "top_topics": len(rows),
         "markdown_output": str(out_path),
@@ -342,4 +399,7 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
         "video_blueprint_output": str(blueprint_path),
         "daily_post_ready_output": str(daily_post_ready_path),
         "top_5_post_now_output": str(top_5_path),
+        "top_3_views_output": str(top_views_path),
+        "top_3_follows_output": str(top_follows_path),
+        "top_3_shares_output": str(top_shares_path),
     }
