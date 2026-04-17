@@ -26,10 +26,11 @@ app = Flask(__name__) if Flask else None
 if app:
 
     @app.get("/")
-    def index() -> Response:
-        if not PAGE_PATH.exists():
-            return Response(f"Missing file: {PAGE_PATH}", status=404)
-        return send_file(PAGE_PATH, mimetype="text/html")
+def index() -> Response:
+    if not PAGE_PATH.exists():
+        refresh_mobile_command_center()  # 🔥 auto-generate
+
+    return send_file(PAGE_PATH, mimetype="text/html")
 
 
     @app.get("/mobile_command_center.json")
