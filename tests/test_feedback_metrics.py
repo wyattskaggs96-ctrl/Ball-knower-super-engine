@@ -66,3 +66,5 @@ def test_build_grouped_performance_sorts_best_first() -> None:
 
     assert grouped["topic_performance"][0]["group_key"] == "recruiting"
     assert grouped["topic_performance"][-1]["group_key"] == "highlights"
+    assert grouped["topic_performance"][0]["avg_followers_gained"] == 5
+    assert grouped["topic_performance"][0]["avg_shares"] == 10

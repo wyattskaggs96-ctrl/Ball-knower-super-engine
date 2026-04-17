@@ -1,6 +1,6 @@
 {
   "run_id": 1,
-  "generated_at": "2026-04-17T14:25:36.282198+00:00",
+  "generated_at": "2026-04-17T15:49:52.430638+00:00",
   "source": "manual",
   "errors": [],
   "recommendations": [
@@ -57,6 +57,338 @@
       "action": "decrease",
       "focus": "analyst_clip",
       "reason": "Lowest video_style_performance by follower conversion (0.0000)."
+    },
+    {
+      "engine_target": "topic_type recommendations",
+      "action": "increase",
+      "focus": "recruiting",
+      "goal": "views",
+      "reason": "Best topic_type for views (avg_views=11155.00)."
+    },
+    {
+      "engine_target": "topic_type recommendations",
+      "action": "decrease",
+      "focus": "highlights",
+      "goal": "views",
+      "reason": "Weakest topic_type for views (avg_views=4153.25)."
+    },
+    {
+      "engine_target": "hook_type recommendations",
+      "action": "increase",
+      "focus": "news_reaction",
+      "goal": "views",
+      "reason": "Best hook_type for views (avg_views=10029.20)."
+    },
+    {
+      "engine_target": "hook_type recommendations",
+      "action": "decrease",
+      "focus": "fan_callout",
+      "goal": "views",
+      "reason": "Weakest hook_type for views (avg_views=544.00)."
+    },
+    {
+      "engine_target": "video_style recommendations",
+      "action": "increase",
+      "focus": "screenshot_reaction",
+      "goal": "views",
+      "reason": "Best video_style for views (avg_views=9629.00)."
+    },
+    {
+      "engine_target": "video_style recommendations",
+      "action": "decrease",
+      "focus": "analyst_clip",
+      "goal": "views",
+      "reason": "Weakest video_style for views (avg_views=1536.00)."
+    },
+    {
+      "engine_target": "topic_type recommendations",
+      "action": "increase",
+      "focus": "recruiting",
+      "goal": "followers",
+      "reason": "Best topic_type for followers (avg_followers_gained=3.50)."
+    },
+    {
+      "engine_target": "topic_type recommendations",
+      "action": "decrease",
+      "focus": "highlights",
+      "goal": "followers",
+      "reason": "Weakest topic_type for followers (avg_followers_gained=1.00)."
+    },
+    {
+      "engine_target": "hook_type recommendations",
+      "action": "increase",
+      "focus": "news_reaction",
+      "goal": "followers",
+      "reason": "Best hook_type for followers (avg_followers_gained=2.20)."
+    },
+    {
+      "engine_target": "hook_type recommendations",
+      "action": "decrease",
+      "focus": "fan_callout",
+      "goal": "followers",
+      "reason": "Weakest hook_type for followers (avg_followers_gained=0.00)."
+    },
+    {
+      "engine_target": "video_style recommendations",
+      "action": "increase",
+      "focus": "screenshot_reaction",
+      "goal": "followers",
+      "reason": "Best video_style for followers (avg_followers_gained=2.33)."
+    },
+    {
+      "engine_target": "video_style recommendations",
+      "action": "decrease",
+      "focus": "analyst_clip",
+      "goal": "followers",
+      "reason": "Weakest video_style for followers (avg_followers_gained=0.00)."
+    },
+    {
+      "engine_target": "topic_type recommendations",
+      "action": "increase",
+      "focus": "transfer_portal",
+      "goal": "shares",
+      "reason": "Best topic_type for shares (avg_shares=26.50)."
+    },
+    {
+      "engine_target": "topic_type recommendations",
+      "action": "decrease",
+      "focus": "mlb",
+      "goal": "shares",
+      "reason": "Weakest topic_type for shares (avg_shares=9.00)."
+    },
+    {
+      "engine_target": "hook_type recommendations",
+      "action": "increase",
+      "focus": "news_reaction",
+      "goal": "shares",
+      "reason": "Best hook_type for shares (avg_shares=23.60)."
+    },
+    {
+      "engine_target": "hook_type recommendations",
+      "action": "decrease",
+      "focus": "fan_callout",
+      "goal": "shares",
+      "reason": "Weakest hook_type for shares (avg_shares=0.00)."
+    },
+    {
+      "engine_target": "video_style recommendations",
+      "action": "increase",
+      "focus": "screenshot_reaction",
+      "goal": "shares",
+      "reason": "Best video_style for shares (avg_shares=33.00)."
+    },
+    {
+      "engine_target": "video_style recommendations",
+      "action": "decrease",
+      "focus": "analyst_clip",
+      "goal": "shares",
+      "reason": "Weakest video_style for shares (avg_shares=0.00)."
     }
-  ]
+  ],
+  "goal_aware_recommendations": {
+    "views": {
+      "topic_type": {
+        "best": {
+          "group_key": "recruiting",
+          "posts": 2,
+          "avg_views": 11155.0,
+          "avg_followers_gained": 3.5,
+          "avg_shares": 15.5,
+          "avg_follower_conversion_rate": 0.0004001329345297441,
+          "avg_engagement_rate": 0.020039769580148442,
+          "avg_completion_rate": 0.14150000000000001
+        },
+        "weakest": {
+          "group_key": "highlights",
+          "posts": 4,
+          "avg_views": 4153.25,
+          "avg_followers_gained": 1.0,
+          "avg_shares": 12.0,
+          "avg_follower_conversion_rate": 0.0003256759839010988,
+          "avg_engagement_rate": 0.016901068812936768,
+          "avg_completion_rate": 0.2665
+        }
+      },
+      "hook_type": {
+        "best": {
+          "group_key": "news_reaction",
+          "posts": 5,
+          "avg_views": 10029.2,
+          "avg_followers_gained": 2.2,
+          "avg_shares": 23.6,
+          "avg_follower_conversion_rate": 0.00021827242625013603,
+          "avg_engagement_rate": 0.019409554802726228,
+          "avg_completion_rate": 0.2392
+        },
+        "weakest": {
+          "group_key": "fan_callout",
+          "posts": 1,
+          "avg_views": 544.0,
+          "avg_followers_gained": 0.0,
+          "avg_shares": 0.0,
+          "avg_follower_conversion_rate": 0.0,
+          "avg_engagement_rate": 0.03860294117647059,
+          "avg_completion_rate": 0.218
+        }
+      },
+      "video_style": {
+        "best": {
+          "group_key": "screenshot_reaction",
+          "posts": 3,
+          "avg_views": 9629.0,
+          "avg_followers_gained": 2.3333333333333335,
+          "avg_shares": 33.0,
+          "avg_follower_conversion_rate": 0.00020502910583070904,
+          "avg_engagement_rate": 0.029674476253641717,
+          "avg_completion_rate": 0.306
+        },
+        "weakest": {
+          "group_key": "analyst_clip",
+          "posts": 2,
+          "avg_views": 1536.0,
+          "avg_followers_gained": 0.0,
+          "avg_shares": 0.0,
+          "avg_follower_conversion_rate": 0.0,
+          "avg_engagement_rate": 0.023652736411020104,
+          "avg_completion_rate": 0.332
+        }
+      }
+    },
+    "followers": {
+      "topic_type": {
+        "best": {
+          "group_key": "recruiting",
+          "posts": 2,
+          "avg_views": 11155.0,
+          "avg_followers_gained": 3.5,
+          "avg_shares": 15.5,
+          "avg_follower_conversion_rate": 0.0004001329345297441,
+          "avg_engagement_rate": 0.020039769580148442,
+          "avg_completion_rate": 0.14150000000000001
+        },
+        "weakest": {
+          "group_key": "highlights",
+          "posts": 4,
+          "avg_views": 4153.25,
+          "avg_followers_gained": 1.0,
+          "avg_shares": 12.0,
+          "avg_follower_conversion_rate": 0.0003256759839010988,
+          "avg_engagement_rate": 0.016901068812936768,
+          "avg_completion_rate": 0.2665
+        }
+      },
+      "hook_type": {
+        "best": {
+          "group_key": "news_reaction",
+          "posts": 5,
+          "avg_views": 10029.2,
+          "avg_followers_gained": 2.2,
+          "avg_shares": 23.6,
+          "avg_follower_conversion_rate": 0.00021827242625013603,
+          "avg_engagement_rate": 0.019409554802726228,
+          "avg_completion_rate": 0.2392
+        },
+        "weakest": {
+          "group_key": "fan_callout",
+          "posts": 1,
+          "avg_views": 544.0,
+          "avg_followers_gained": 0.0,
+          "avg_shares": 0.0,
+          "avg_follower_conversion_rate": 0.0,
+          "avg_engagement_rate": 0.03860294117647059,
+          "avg_completion_rate": 0.218
+        }
+      },
+      "video_style": {
+        "best": {
+          "group_key": "screenshot_reaction",
+          "posts": 3,
+          "avg_views": 9629.0,
+          "avg_followers_gained": 2.3333333333333335,
+          "avg_shares": 33.0,
+          "avg_follower_conversion_rate": 0.00020502910583070904,
+          "avg_engagement_rate": 0.029674476253641717,
+          "avg_completion_rate": 0.306
+        },
+        "weakest": {
+          "group_key": "analyst_clip",
+          "posts": 2,
+          "avg_views": 1536.0,
+          "avg_followers_gained": 0.0,
+          "avg_shares": 0.0,
+          "avg_follower_conversion_rate": 0.0,
+          "avg_engagement_rate": 0.023652736411020104,
+          "avg_completion_rate": 0.332
+        }
+      }
+    },
+    "shares": {
+      "topic_type": {
+        "best": {
+          "group_key": "transfer_portal",
+          "posts": 2,
+          "avg_views": 9453.5,
+          "avg_followers_gained": 1.5,
+          "avg_shares": 26.5,
+          "avg_follower_conversion_rate": 0.00010714285714285714,
+          "avg_engagement_rate": 0.02211692480130426,
+          "avg_completion_rate": 0.251
+        },
+        "weakest": {
+          "group_key": "mlb",
+          "posts": 1,
+          "avg_views": 5721.0,
+          "avg_followers_gained": 3.0,
+          "avg_shares": 9.0,
+          "avg_follower_conversion_rate": 0.0005243838489774515,
+          "avg_engagement_rate": 0.015906310085649362,
+          "avg_completion_rate": 0.201
+        }
+      },
+      "hook_type": {
+        "best": {
+          "group_key": "news_reaction",
+          "posts": 5,
+          "avg_views": 10029.2,
+          "avg_followers_gained": 2.2,
+          "avg_shares": 23.6,
+          "avg_follower_conversion_rate": 0.00021827242625013603,
+          "avg_engagement_rate": 0.019409554802726228,
+          "avg_completion_rate": 0.2392
+        },
+        "weakest": {
+          "group_key": "fan_callout",
+          "posts": 1,
+          "avg_views": 544.0,
+          "avg_followers_gained": 0.0,
+          "avg_shares": 0.0,
+          "avg_follower_conversion_rate": 0.0,
+          "avg_engagement_rate": 0.03860294117647059,
+          "avg_completion_rate": 0.218
+        }
+      },
+      "video_style": {
+        "best": {
+          "group_key": "screenshot_reaction",
+          "posts": 3,
+          "avg_views": 9629.0,
+          "avg_followers_gained": 2.3333333333333335,
+          "avg_shares": 33.0,
+          "avg_follower_conversion_rate": 0.00020502910583070904,
+          "avg_engagement_rate": 0.029674476253641717,
+          "avg_completion_rate": 0.306
+        },
+        "weakest": {
+          "group_key": "analyst_clip",
+          "posts": 2,
+          "avg_views": 1536.0,
+          "avg_followers_gained": 0.0,
+          "avg_shares": 0.0,
+          "avg_follower_conversion_rate": 0.0,
+          "avg_engagement_rate": 0.023652736411020104,
+          "avg_completion_rate": 0.332
+        }
+      }
+    }
+  }
 }

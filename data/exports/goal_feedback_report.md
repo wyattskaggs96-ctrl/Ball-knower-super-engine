@@ -1,14 +1,5 @@
-# Weekly Review
+# Goal Feedback Report
 
-- Top priorities for next cycle:
-- increase mlb for topic scoring
-- decrease transfer_portal for topic scoring
-- increase funny_open for hook recommendations
-- decrease fan_callout for hook recommendations
-- increase late_night for posting recommendations
-- decrease afternoon for posting recommendations
-- increase short for content planning
-- increase gameplay_text for content planning
 - Best for views: topic_type='recruiting', hook_type='news_reaction', video_style='screenshot_reaction'
 - Weakest for views: topic_type='highlights', hook_type='fan_callout', video_style='analyst_clip'
 - Best for follows: topic_type='recruiting', hook_type='news_reaction', video_style='screenshot_reaction'
