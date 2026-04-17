@@ -1,14 +1,4 @@
 post_id,post_url,post_timestamp,topic_type,hook_type,video_style,teams_tagged,players_tagged,length_seconds,views,likes,comments,shares,saves,profile_views,followers_gained,watch_time_seconds,completion_rate
-bk_2026_0415_01,https://www.tiktok.com/@ballknower/video/748100001,2026-04-15T13:12:00Z,recruiting,stat_shock,facecam_breakdown,Duke|Kentucky,Cooper Flagg|AJ Dybantsa,36,22800,2740,382,490,360,980,310,25.2,0.63
-bk_2026_0415_02,https://www.tiktok.com/@ballknower/video/748100002,2026-04-15T18:05:00Z,analysis,question_hook,teleprompter_commentary,Celtics,Jayson Tatum,42,19100,2080,340,410,295,760,248,24.4,0.59
-bk_2026_0414_03,https://www.tiktok.com/@ballknower/video/748100003,2026-04-14T22:18:00Z,highlights,funny_open,meme_edit,Lakers,LeBron James,17,45200,3350,146,124,82,310,88,11.6,0.28
-bk_2026_0414_04,https://www.tiktok.com/@ballknower/video/748100004,2026-04-14T15:42:00Z,injury_update,news_flash,quick_news,Warriors,Stephen Curry,24,12300,1180,126,122,90,255,66,14.8,0.36
-bk_2026_0413_05,https://www.tiktok.com/@ballknower/video/748100005,2026-04-13T19:26:00Z,recruiting,stat_shock,facecam_breakdown,UConn,Paige Bueckers,39,20500,2430,365,442,318,860,284,26.1,0.61
-bk_2026_0413_06,https://www.tiktok.com/@ballknower/video/748100006,2026-04-13T08:34:00Z,analysis,hot_take,voiceover_tape,Nuggets,Nikola Jokic,47,16400,1760,218,240,185,520,140,23.0,0.54
-bk_2026_0412_07,https://www.tiktok.com/@ballknower/video/748100007,2026-04-12T11:10:00Z,off_topic_banter,funny_open,meme_edit,,,18,13900,1190,92,74,41,180,32,9.8,0.23
-bk_2026_0412_08,https://www.tiktok.com/@ballknower/video/748100008,2026-04-12T20:48:00Z,analysis,stat_shock,teleprompter_commentary,Thunder,Shai Gilgeous-Alexander,44,18700,2240,296,355,260,700,220,24.9,0.57
-bk_2026_0411_09,https://www.tiktok.com/@ballknower/video/748100009,2026-04-11T16:03:00Z,recruiting,question_hook,facecam_breakdown,North Carolina,Ian Jackson,33,17200,1980,301,332,244,640,196,22.7,0.55
-bk_2026_0411_10,https://www.tiktok.com/@ballknower/video/748100010,2026-04-11T23:11:00Z,highlights,funny_open,meme_edit,Bucks,Giannis Antetokounmpo,19,39800,2870,130,102,69,275,74,10.9,0.27
 bk_20260416_11,https://www.tiktok.com/@ballknower1996/video/7629442049304972557,2026-04-16T20:38:00Z,analysis,fan_callout,analyst_clip,Cowboys,,11,544,21,0,0,0,0,0,3734,0.218
 bk_20260414_12,,2026-04-14T00:00:00Z,highlights,funny_open,meme_edit,Hornets|Heat,LaMelo Ball|Bam Adebayo,6,1839,17,0,11,2,0,0,10846,0.286
 bk_20260413_13,,2026-04-13T00:00:00Z,recruiting,hot_take,gameplay_text,Kentucky|Kansas,Tyran Stokes,15,5310,73,28,0,6,0,3,45974,0.127
