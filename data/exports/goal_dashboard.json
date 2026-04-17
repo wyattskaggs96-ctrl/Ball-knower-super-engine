@@ -1,0 +1,362 @@
+{
+  "best_posts_for_views": [
+    {
+      "topic": "Lakers are one trade away from contention or one trade from disaster",
+      "sport": "nba",
+      "topic_lane": "mainstream",
+      "metric": "weighted_view_score",
+      "metric_score": 113.76,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "espn_bleacher_public",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "Cowboys draft strategy feels like d\u00e9j\u00e0 vu and fans are panicking",
+      "sport": "nfl",
+      "topic_lane": "mainstream",
+      "metric": "weighted_view_score",
+      "metric_score": 111.59,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "espn_bleacher_public",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "Knicks toughness is real but their half-court offense is suspect",
+      "sport": "nba",
+      "topic_lane": "mainstream",
+      "metric": "weighted_view_score",
+      "metric_score": 103.27,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "espn_bleacher_public",
+        "x_watchlist_velocity"
+      ]
+    }
+  ],
+  "best_posts_for_follows": [
+    {
+      "topic": "UConn culture wins again or portal luck?",
+      "sport": "college basketball",
+      "topic_lane": "transfer_portal",
+      "metric": "weighted_follow_score",
+      "metric_score": 98.81,
+      "weighted_primary_goal": "followers",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_shares",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "A five-star decommit just exposed fake family culture pitches",
+      "sport": "recruiting drama",
+      "topic_lane": "recruiting",
+      "metric": "weighted_follow_score",
+      "metric_score": 93.31,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "UNC fans think this portal class is fake deep",
+      "sport": "college basketball",
+      "topic_lane": "transfer_portal",
+      "metric": "weighted_follow_score",
+      "metric_score": 90.85,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_shares",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    }
+  ],
+  "best_posts_for_shares": [
+    {
+      "topic": "UNC fans think this portal class is fake deep",
+      "sport": "college basketball",
+      "topic_lane": "transfer_portal",
+      "metric": "weighted_share_score",
+      "metric_score": 88.96,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_shares",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "Transfer portal turned mid-majors into one-year farms",
+      "sport": "transfer portal",
+      "topic_lane": "transfer_portal",
+      "metric": "weighted_share_score",
+      "metric_score": 85.3,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_shares",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "Recruiting insiders are moving betting lines before the books",
+      "sport": "recruiting drama",
+      "topic_lane": "recruiting",
+      "metric": "weighted_share_score",
+      "metric_score": 78.07,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    }
+  ],
+  "hottest_recruiting_portal_moves": [
+    {
+      "topic": "UConn culture wins again or portal luck?",
+      "sport": "college basketball",
+      "topic_lane": "transfer_portal",
+      "metric": "weighted_total_score",
+      "metric_score": 99.8,
+      "weighted_primary_goal": "followers",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_shares",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "A five-star decommit just exposed fake family culture pitches",
+      "sport": "recruiting drama",
+      "topic_lane": "recruiting",
+      "metric": "weighted_total_score",
+      "metric_score": 96.91,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "UNC fans think this portal class is fake deep",
+      "sport": "college basketball",
+      "topic_lane": "transfer_portal",
+      "metric": "weighted_total_score",
+      "metric_score": 95.55,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_shares",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    }
+  ],
+  "strongest_public_trend_stories": [
+    {
+      "topic": "Lakers are one trade away from contention or one trade from disaster",
+      "sport": "nba",
+      "topic_lane": "mainstream",
+      "metric": "weighted_total_score",
+      "metric_score": 113.76,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "espn_bleacher_public",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "Cowboys draft strategy feels like d\u00e9j\u00e0 vu and fans are panicking",
+      "sport": "nfl",
+      "topic_lane": "mainstream",
+      "metric": "weighted_total_score",
+      "metric_score": 111.59,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "espn_bleacher_public",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "Knicks toughness is real but their half-court offense is suspect",
+      "sport": "nba",
+      "topic_lane": "mainstream",
+      "metric": "weighted_total_score",
+      "metric_score": 103.27,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "espn_bleacher_public",
+        "x_watchlist_velocity"
+      ]
+    }
+  ],
+  "strongest_premium_intel_stories": [
+    {
+      "topic": "UConn culture wins again or portal luck?",
+      "sport": "college basketball",
+      "topic_lane": "transfer_portal",
+      "metric": "weighted_total_score",
+      "metric_score": 99.8,
+      "weighted_primary_goal": "followers",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_shares",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "A five-star decommit just exposed fake family culture pitches",
+      "sport": "recruiting drama",
+      "topic_lane": "recruiting",
+      "metric": "weighted_total_score",
+      "metric_score": 96.91,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "UNC fans think this portal class is fake deep",
+      "sport": "college basketball",
+      "topic_lane": "transfer_portal",
+      "metric": "weighted_total_score",
+      "metric_score": 95.55,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_shares",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    }
+  ],
+  "most_sendable_sports_moments": [
+    {
+      "topic": "Lakers are one trade away from contention or one trade from disaster",
+      "sport": "nba",
+      "topic_lane": "mainstream",
+      "metric": "sendability_score",
+      "metric_score": 62.5,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "espn_bleacher_public",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "Cowboys draft strategy feels like d\u00e9j\u00e0 vu and fans are panicking",
+      "sport": "nfl",
+      "topic_lane": "mainstream",
+      "metric": "sendability_score",
+      "metric_score": 62.5,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "espn_bleacher_public",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "Knicks toughness is real but their half-court offense is suspect",
+      "sport": "nba",
+      "topic_lane": "mainstream",
+      "metric": "sendability_score",
+      "metric_score": 62.5,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "espn_bleacher_public",
+        "x_watchlist_velocity"
+      ]
+    }
+  ],
+  "stories_with_strongest_account_fit": [
+    {
+      "topic": "UConn culture wins again or portal luck?",
+      "sport": "college basketball",
+      "topic_lane": "transfer_portal",
+      "metric": "account_fit_weight",
+      "metric_score": 1.06,
+      "weighted_primary_goal": "followers",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_shares",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "UNC fans think this portal class is fake deep",
+      "sport": "college basketball",
+      "topic_lane": "transfer_portal",
+      "metric": "account_fit_weight",
+      "metric_score": 1.06,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_shares",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    },
+    {
+      "topic": "Transfer portal turned mid-majors into one-year farms",
+      "sport": "transfer portal",
+      "topic_lane": "transfer_portal",
+      "metric": "account_fit_weight",
+      "metric_score": 1.06,
+      "weighted_primary_goal": "views",
+      "source_signals": [
+        "feedback_best_followers",
+        "feedback_best_shares",
+        "feedback_best_views",
+        "on3_context",
+        "private_intel",
+        "x_watchlist_velocity"
+      ]
+    }
+  ]
+}

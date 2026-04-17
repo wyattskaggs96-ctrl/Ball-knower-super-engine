@@ -5,6 +5,7 @@ from pathlib import Path
 
 from app.core.models import ContentPack, TrendCandidate
 from app.core.scoring import ScoringEngine
+from app.core.source_weighting import apply_source_weighting, build_weighting_context
 from app.sources import manual_source
 
 
@@ -327,27 +328,125 @@ def _render_goal_top_3(rows: list[dict], score_key: str, title: str) -> str:
         lines.append(f"   - Why this fits: {reason_templates[target_goal]}")
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
+
+
+def _top_rows(rows: list[dict], key: str, limit: int = 3, used_topics: set[str] | None = None) -> list[dict]:
+    ranked = sorted(rows, key=lambda row: row[key], reverse=True)
+    if not used_topics:
+        return ranked[:limit]
+
+    picks: list[dict] = []
+    delayed: list[dict] = []
+    for row in ranked:
+        if len(picks) >= limit:
+            break
+        if row["topic"] in used_topics:
+            delayed.append(row)
+            continue
+        picks.append(row)
+
+    if len(picks) < limit:
+        for row in delayed:
+            if len(picks) >= limit:
+                break
+            picks.append(row)
+    return picks
+
+
+def _compact_entry(row: dict, metric: str) -> dict:
+    return {
+        "topic": row["topic"],
+        "sport": row["sport"],
+        "topic_lane": row["topic_lane"],
+        "metric": metric,
+        "metric_score": row[metric],
+        "weighted_primary_goal": row["weighted_primary_goal"],
+        "source_signals": row["source_signals"],
+    }
+
+
+def _dashboard_payload(rows: list[dict], dashboard_rows: list[dict] | None = None) -> dict:
+    def compact(items: list[dict], metric: str) -> list[dict]:
+        return [_compact_entry(row, metric) for row in items]
+
+    pool = dashboard_rows or rows
+    used_topics: set[str] = set()
+    view_rows = _top_rows(rows, "weighted_view_score")
+    used_topics.update(row["topic"] for row in view_rows[:2])
+    follow_rows = _top_rows(rows, "weighted_follow_score", used_topics=used_topics)
+    used_topics.update(row["topic"] for row in follow_rows[:2])
+    share_rows = _top_rows(rows, "weighted_share_score", used_topics=used_topics)
+
+    return {
+        "best_posts_for_views": compact(view_rows, "weighted_view_score"),
+        "best_posts_for_follows": compact(follow_rows, "weighted_follow_score"),
+        "best_posts_for_shares": compact(share_rows, "weighted_share_score"),
+        "hottest_recruiting_portal_moves": compact(
+            _top_rows([row for row in rows if row["topic_lane"] in {"recruiting", "transfer_portal"}], "weighted_total_score"),
+            "weighted_total_score",
+        ),
+        "strongest_public_trend_stories": compact(
+            _top_rows([row for row in pool if row["is_public_trend_story"]], "weighted_total_score"),
+            "weighted_total_score",
+        ),
+        "strongest_premium_intel_stories": compact(
+            _top_rows([row for row in rows if row["is_premium_intel_story"]], "weighted_total_score"),
+            "weighted_total_score",
+        ),
+        "most_sendable_sports_moments": compact(_top_rows(rows, "sendability_score"), "sendability_score"),
+        "stories_with_strongest_account_fit": compact(_top_rows(rows, "account_fit_weight"), "account_fit_weight"),
+    }
+
+
+def _render_goal_dashboard_markdown(payload: dict) -> str:
+    sections = [
+        ("Best posts for views", payload["best_posts_for_views"], "weighted_view_score"),
+        ("Best posts for follows", payload["best_posts_for_follows"], "weighted_follow_score"),
+        ("Best posts for shares", payload["best_posts_for_shares"], "weighted_share_score"),
+        ("Hottest recruiting/portal moves", payload["hottest_recruiting_portal_moves"], "weighted_total_score"),
+        ("Strongest public-trend stories", payload["strongest_public_trend_stories"], "weighted_total_score"),
+        ("Strongest premium-intel stories", payload["strongest_premium_intel_stories"], "weighted_total_score"),
+        ("Most sendable sports moments", payload["most_sendable_sports_moments"], "sendability_score"),
+        ("Stories with strongest account-fit", payload["stories_with_strongest_account_fit"], "account_fit_weight"),
+    ]
+
+    lines = ["# Goal Dashboard", "", "Quick picks for daily creator decisions.", ""]
+    for title, rows, metric in sections:
+        lines.append(f"## {title}")
+        if not rows:
+            lines.append("- No qualifying stories today.")
+            lines.append("")
+            continue
+        for idx, row in enumerate(rows, start=1):
+            lines.append(
+                f"- {idx}. {row['topic']} ({metric.replace('_', ' ')}: {row['metric_score']}, lane: {row['topic_lane']}, signals: {', '.join(row['source_signals']) or 'none'})"
+            )
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
+
+
 def simulate_daily_content_sheet(output_path: str = "data/exports/example_output.md") -> dict:
     trends = manual_source.fetch_trends()
     scoring = ScoringEngine()
+    weighting_context = build_weighting_context()
 
-    ranked: list[tuple[TrendCandidate, dict, float, dict, float]] = []
+    ranked: list[tuple[TrendCandidate, dict, dict, float, dict, float]] = []
     for trend in trends:
         scored = scoring.score(trend)
+        weighted = apply_source_weighting(trend, scored, weighting_context)
         postability, components = _postability_score(trend, scored)
-        final_rank_score = round(scored["total_score"] * 0.5 + postability * 0.5, 2)
-        ranked.append((trend, scored, postability, components, final_rank_score))
+        final_rank_score = round(weighted["weighted_total_score"] * 0.6 + postability * 0.4, 2)
+        ranked.append((trend, scored, weighted, postability, components, final_rank_score))
 
-    ranked.sort(key=lambda item: item[4], reverse=True)
-    top = ranked[:10]
+    ranked.sort(key=lambda item: item[5], reverse=True)
 
-    rows: list[dict] = []
-    for idx, (trend, scored, postability, components, final_rank_score) in enumerate(top, start=1):
+    all_rows: list[dict] = []
+    for idx, (trend, scored, weighted, postability, components, final_rank_score) in enumerate(ranked, start=1):
         hooks = _hooks_for_topic(trend.topic)
         selected_hook = _pick_hook(hooks, postability)
         content_pack = _build_pack(trend, selected_hook, idx)
 
-        rows.append(
+        all_rows.append(
             {
                 "topic": trend.topic,
                 "sport": trend.sport,
@@ -356,7 +455,22 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
                 "view_score": scored["view_score"],
                 "follow_score": scored["follow_score"],
                 "share_score": scored["share_score"],
+                "sendability_score": scored["sendability_score"],
                 "primary_goal": scored["primary_goal"],
+                "source_weight": weighted["source_weight"],
+                "account_fit_weight": weighted["account_fit_weight"],
+                "urgency_weight": weighted["urgency_weight"],
+                "final_goal_weight": weighted["final_goal_weight"],
+                "weighted_view_score": weighted["weighted_view_score"],
+                "weighted_follow_score": weighted["weighted_follow_score"],
+                "weighted_share_score": weighted["weighted_share_score"],
+                "weighted_primary_goal": weighted["weighted_primary_goal"],
+                "weighted_goal_score": weighted["weighted_goal_score"],
+                "weighted_total_score": weighted["weighted_total_score"],
+                "topic_lane": weighted["topic_lane"],
+                "source_signals": weighted["source_signals"],
+                "is_public_trend_story": weighted["is_public_trend_story"],
+                "is_premium_intel_story": weighted["is_premium_intel_story"],
                 "postability_components": components,
                 "final_rank_score": final_rank_score,
                 "score_reasoning": _score_reasoning(trend, scored),
@@ -365,6 +479,8 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
                 "content_pack": content_pack.model_dump(mode="json"),
             }
         )
+
+    rows = all_rows[:10]
 
     out_path = Path(output_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -392,6 +508,13 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
     top_shares_path = out_path.parent / "top_3_shares.md"
     top_shares_path.write_text(_render_goal_top_3(rows, "share_score", "# Top 3 Topics for Shares"), encoding="utf-8")
 
+    dashboard_payload = _dashboard_payload(rows, dashboard_rows=all_rows)
+    goal_dashboard_json_path = out_path.parent / "goal_dashboard.json"
+    goal_dashboard_json_path.write_text(json.dumps(dashboard_payload, indent=2), encoding="utf-8")
+
+    goal_dashboard_md_path = out_path.parent / "goal_dashboard.md"
+    goal_dashboard_md_path.write_text(_render_goal_dashboard_markdown(dashboard_payload), encoding="utf-8")
+
     return {
         "top_topics": len(rows),
         "markdown_output": str(out_path),
@@ -402,4 +525,6 @@ def simulate_daily_content_sheet(output_path: str = "data/exports/example_output
         "top_3_views_output": str(top_views_path),
         "top_3_follows_output": str(top_follows_path),
         "top_3_shares_output": str(top_shares_path),
+        "goal_dashboard_md_output": str(goal_dashboard_md_path),
+        "goal_dashboard_json_output": str(goal_dashboard_json_path),
     }
